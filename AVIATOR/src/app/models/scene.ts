@@ -1,5 +1,6 @@
 import {pilot} from "./pilot"
-export interface scene{
+export interface scene
+{
     pilot: pilot
     sceneIndex: number
 }
