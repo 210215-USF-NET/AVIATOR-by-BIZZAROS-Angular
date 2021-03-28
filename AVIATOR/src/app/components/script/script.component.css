@@ -1,0 +1,28 @@
+.BackgroundBlock {
+    margin: 15px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
+    display:none;
+  }
+  
+  
+  .CharacterBlock {
+    margin: 15px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
+    display: none;
+  }
+  .DialogueBlock {
+    margin: 15px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
+    display: none;
+  }
+  .charlist{
+  
+      display:none;
+  }
+  
