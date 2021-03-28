@@ -8,7 +8,7 @@ import { pilot } from '../models/pilot';
 @Injectable({
   providedIn: 'root'
 })
-export class PilotRESTServiceService {
+export class PilotRESTService {
   httpOptions = {
     headers: new HttpHeaders(
       {
@@ -16,7 +16,7 @@ export class PilotRESTServiceService {
       }
     )
   }
-  url: string = 'https://localhost:4200/api/jawn';
+  url: string = 'https://localhost:9600/api/jawn';
   constructor(private http: HttpClient) { }
   AddPilot(pilot2Add: pilot): Observable<pilot>
   {
