@@ -16,8 +16,8 @@ The objective of this application is to create a space for animators, producers,
 - Screenwriter
 ## Functionality
 ### Site
-- [ ] Users should be able to register
-- [ ] Users should be able to log in
+- [x] Users should be able to register
+- [x] Users should be able to log in
 - [ ] Users should be able to create a pilot
     - [ ] The user who creates the pilot should be its producer
 - [ ] Users should be able to sign up to work on a pilot as a screenwriter
