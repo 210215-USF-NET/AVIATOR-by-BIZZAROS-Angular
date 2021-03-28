@@ -1,27 +1,48 @@
 # AVIATOR
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Audio Visual Integrated Application Tracking Our Resources
+## Objective
+The objective of this application is to create a space for animators, producers, and animation enthusiasts. The application will streamline the pilot creation process and invite team collaboration on projects
+## Tech Stack
+- C#
+- ASP.NET
+- PostgreSQL
+- Angular JS
+- Github Actions
+- Azure App Service
+- Azure Blob Storage
+- SonarCloud
+## User Roles
+- Producer (pilot owner)
+- Screenwriter
+## Functionality
+### Site
+- [ ] Users should be able to register
+- [ ] Users should be able to log in
+- [ ] Users should be able to create a pilot
+    - [ ] The user who creates the pilot should be its producer
+- [ ] Users should be able to sign up to work on a pilot as a screenwriter
+- [ ] Producers and screenwriters should be able to submit files to the pilots that they are working on
+- [ ] Producers and screenwriters should be able to view files that have been submitted to the pilots that they are working on.
+- [ ] Producers and screenwriters should be able to view scenes and characters from the pilots that they are working on
+### Script Parser
+- [ ] When uploaded, scripts are parsed by the browser
+- [ ] Scenes are created automatically based on the parsed script
+- [ ] Scene elements are created automatically based on the parsed script
+- [ ] Scene elements are applied to the correct scene(s) automatically based on the parsed script
+- [ ] Scenes and characters can be manually added without needing to appear in the script
+### Non-functional requirements
+- [ ] The system features must be tested thoroughly
+- [ ] The system should use a secure third-party service to manage authentication
+- [ ] The system should be easy to use
+- [ ] The system should have a responsive user interface
+- [ ] The system should be easy to maintain and extend
+## Development Team
+- Project Lead: [Joaquin](https://github.com/j0livar)
+- Development Lead: [Mads](https://github.com/MadCynWil)
+- Backend
+    - Database scaffolding: [Angeleen](https://github.com/AngeleenAbesamis)
+    - Database administration: [Angeleen](https://github.com/AngeleenAbesamis) & [Alan](https://github.com/libbya)
+    - Server: [Angeleen](https://github.com/AngeleenAbesamis) & [Alan](https://github.com/libbya)
+- Frontend: [Mads](https://github.com/MadCynWil) & [Joaquin](https://github.com/j0livar)
+- API Management: [Joaquin](https://github.com/j0livar)
+- Devops: [Alan](https://github.com/libbya)

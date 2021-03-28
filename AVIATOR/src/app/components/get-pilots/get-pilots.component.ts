@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PilotRESTServiceService } from 'src/app/services/pilot-restservice.service';
 
 @Component({
   selector: 'app-get-pilots',
@@ -10,6 +12,7 @@ export class GetPilotsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

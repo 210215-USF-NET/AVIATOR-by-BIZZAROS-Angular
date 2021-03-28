@@ -26,4 +26,8 @@ export class PilotRESTServiceService {
   {
     return this.http.get<pilot[]>(this.url, this.httpOptions);
   }
+  GetPilots(): Observable<pilot[]>
+  {
+    return this.http.get<pilot[]>(this.url,this.httpOptions);
+  }
 }

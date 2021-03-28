@@ -3,4 +3,5 @@ export interface pilot
 {
     producer: user
     producerID: number
+    name: string
 }
