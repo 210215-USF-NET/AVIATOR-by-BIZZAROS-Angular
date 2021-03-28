@@ -1,0 +1,107 @@
+.Elements {
+    width:100%;
+  margin: 15px;
+  padding: 10px;
+  border-width: 2px;
+  float: right;
+  display: inline-block;
+  overflow: hidden;
+  clear:both;
+  align-content:center;
+}
+.BackgroundBlock {
+  margin: 15px;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  display: block;
+  display: inline-block;
+}
+.CharList:hover{
+    background-color:lightblue;
+}
+.DialougeList:hover{
+    background-color:lightblue;
+}
+
+
+.Background:hover {
+  background-color: lightblue;
+}
+.Content {
+  display: none!important;
+}
+
+.CharacterBlock {
+  margin: 15px;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  display: block
+}
+
+.DialogueBlock {
+  margin: 15px;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  display: block;
+}
+
+.navScene {
+  width: 100%;
+  background-color: aliceblue;
+}
+
+.sceneNav {
+  color: orangered;
+  display: inline;
+  margin: 5px;
+  user-select: none;
+}
+body {
+
+background-color:green;
+}
+.CharList{
+    position:relative;
+}
+
+.context {
+    position:absolute;
+    left:0px;
+    top:0px;
+    display:none;
+    border:solid;
+    background-color:white;
+    z-index:200;
+    padding:5px;
+    backdrop-filter:blur();
+}
+.AssetName {
+  position: absolute;
+  font-size: 18px;
+  left: 0px;
+  top: 0px;
+  text-shadow: 2px 2px 4px #000000;
+  color: white;
+}
+.AssetImg {
+  display: inline-block;
+  position:relative;
+  top: 0px;
+  left: 0px;
+  float:left;
+}
+.AssetDescription {
+  position: relative;
+  display:inline-block;
+  top:0px;
+  float: right;
+}
+.DisplayBackground {
+  position: absolute;
+  top:0px;
+  left:0px;
+  height:auto;
+}
