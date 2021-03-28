@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PilotRESTServiceService } from 'src/app/services/pilot-restservice.service';
+import { PilotRESTService } from 'src/app/services/pilot-rest.service';
 
 @Component({
   selector: 'app-get-pilots',

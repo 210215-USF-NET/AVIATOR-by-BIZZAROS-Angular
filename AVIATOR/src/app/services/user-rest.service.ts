@@ -6,7 +6,7 @@ import { user } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class UserRESTServiceService {
+export class UserRESTService {
   httpOptions = {
     headers: new HttpHeaders(
       {
@@ -14,7 +14,7 @@ export class UserRESTServiceService {
       }
     )
   }
-  url: string = 'https://localhost:4200/api/jawn'
+  url: string = 'https://localhost:9600/api/jawn'
   constructor(private http: HttpClient) { }
   GetUserByEmail(email: string): Observable<user>
   {
