@@ -11,40 +11,40 @@ declare var CacheEngine: any;
   styleUrls: ['./scene.component.css'],
 })
 export class SceneComponent implements OnInit {
-  form: FormGroup;
-  error: String;
-  userId: Number;
-  fr: any;
-  resultFile: any;
+  // form: FormGroup;
+  // error: String;
+  // userId: Number;
+  // fr: any;
+  // resultFile: any;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    if (CacheEngine.getCache("Processed")) {
-      SceneNav.Populate(document.querySelector(".navScene"), CacheEngine.getCache("Processed"));
-    }
-    this.form = this.formBuilder.group({
-      character: ['']
-    });
+    // if (CacheEngine.getCache("Processed")) {
+    //   SceneNav.Populate(document.querySelector(".navScene"), CacheEngine.getCache("Processed"));
+    // }
+    // this.form = this.formBuilder.group({
+    //   character: ['']
+    // });
   }
 
-  onFileChange(event) {
+//   onFileChange(event) {
 
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('character').setValue(file);
-      let Result: any = ""
-      console.log(this.form.get('character').value);
-      let fr = new FileReader();
-      Result=fr.readAsDataURL(file);
-      fr.onloadend = res => {
-        var myImage = new Image(); // Creates image object
-        console.log(res); // Assigns converted image to image object
-       // Draws the image on canvas
+//     if (event.target.files.length > 0) {
+//       const file = event.target.files[0];
+//       this.form.get('character').setValue(file);
+//       let Result: any = ""
+//       console.log(this.form.get('character').value);
+//       let fr = new FileReader();
+//       Result=fr.readAsDataURL(file);
+//       fr.onloadend = res => {
+//         var myImage = new Image(); // Creates image object
+//         console.log(res); // Assigns converted image to image object
+//        // Draws the image on canvas
 
-        SceneNav.ShowFile(res.srcElement["result"].toString(), true);
-      };
-    }
+//         SceneNav.ShowFile(res.srcElement["result"].toString(), true);
+//       };
+//     }
 
 
-  }
+//   }
 }

@@ -13,11 +13,11 @@ declare var FileManagement: any;
 })
 
 export class ScriptComponent implements OnInit {
-  form: FormGroup;
-  error: String;
-  userId: Number;
-  fr: any;
-  resultFile: any;
+  // form: FormGroup;
+  // error: String;
+  // userId: Number;
+  // fr: any;
+  // resultFile: any;
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -27,31 +27,31 @@ export class ScriptComponent implements OnInit {
    // new ParseEngine().display(".Content");
     let resultFile = "";
    // new FileManagement().getScreenplay("https://cryptoart20210310221023.azurewebsites.net/xml/reformschool.xml");
-    this.form = this.formBuilder.group({
-      avatar: ['']
-    });
-    if (CacheEngine.getCache("Processed")) {
-      new ParseEngine().process("",false);
-    }
+    // this.form = this.formBuilder.group({
+    //   avatar: ['']
+    // });
+    // if (CacheEngine.getCache("Processed")) {
+    //   new ParseEngine().process("",false);
+    // }
 
   }
   
-  onFileChange(event) {
+  // onFileChange(event) {
 
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.form.get('avatar').setValue(file);
-      let Result: any = ""
-      console.log(this.form.get('avatar').value);
-      let fr = new FileReader();
-      fr.readAsText(this.form.get('avatar').value);
-      fr.onload = res => {
-        Result = (res.target as FileReader).result;
-        new ParseEngine().process(Result,true);
-      };
-    }
+  //   if (event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     this.form.get('avatar').setValue(file);
+  //     let Result: any = ""
+  //     console.log(this.form.get('avatar').value);
+  //     let fr = new FileReader();
+  //     fr.readAsText(this.form.get('avatar').value);
+  //     fr.onload = res => {
+  //       Result = (res.target as FileReader).result;
+  //       new ParseEngine().process(Result,true);
+  //     };
+  //   }
 
 
 
-    }
+  //   }
   }
