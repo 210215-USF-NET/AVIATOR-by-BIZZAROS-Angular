@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -14,6 +14,7 @@ import { GetPilotsComponent } from './components/get-pilots/get-pilots.component
 import { AddFileComponent } from './components/add-file/add-file.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
+import { SceneComponent } from './components/scene/scene.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
     NavMenuComponent,
     UserInfoComponent,
     ScriptComponent,
+    SceneComponent,
     ],
     
     imports: [
@@ -34,6 +36,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
     HttpClientModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot(
     {
     domain: 'dev-v1e9x4pd.us.auth0.com',
