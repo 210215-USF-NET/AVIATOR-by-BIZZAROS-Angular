@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { user } from 'src/app/models/user';
-import {UserRESTService} from 'src/app/services/user-rest.service';
+//import {UserRESTService} from 'src/app/services/user-rest.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,7 +11,9 @@ import {UserRESTService} from 'src/app/services/user-rest.service';
 export class NavMenuComponent implements OnInit {
 
   // userModel: user;
-  // constructor(public auth:AuthService, private userService: UserRESTService) {
+  constructor(public auth:AuthService
+  //,private userService: UserRESTService
+    ) { }
   // this.userModel =
   // {
   //   FirstName: '',
