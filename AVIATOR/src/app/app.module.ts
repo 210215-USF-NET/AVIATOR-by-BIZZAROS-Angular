@@ -7,13 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { AddFileComponent } from './components/add-file/add-file.component';
 import { AuthButtonComponent } from './components/auth-button/auth-button.component';
-import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ScriptComponent } from './components/script/script.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
-import { AboutPageComponent } from './components/about-page/about-page.component';
 import { GetPilotsComponent } from './components/get-pilots/get-pilots.component';
+import { AddFileComponent } from './components/add-file/add-file.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 @NgModule({
     declarations: [
