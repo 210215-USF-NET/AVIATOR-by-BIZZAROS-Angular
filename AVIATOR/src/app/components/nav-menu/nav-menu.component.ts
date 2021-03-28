@@ -11,7 +11,9 @@ import { user } from 'src/app/models/user';
 export class NavMenuComponent implements OnInit {
 
   // userModel: user;
-  // constructor(public auth:AuthService, private userService: UserRESTService) {
+  constructor(public auth:AuthService
+  //,private userService: UserRESTService
+    ) { }
   // this.userModel =
   // {
   //   FirstName: '',

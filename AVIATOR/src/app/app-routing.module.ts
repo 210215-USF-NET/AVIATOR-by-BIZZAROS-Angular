@@ -23,6 +23,7 @@ const routes: Routes = [
     {
     path: 'user-info',
     component: UserInfoComponent,
+    canActivate: [AuthGuard]
     },
     {
     path: 'script',

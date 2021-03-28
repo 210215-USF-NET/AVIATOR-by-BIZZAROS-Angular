@@ -24,7 +24,7 @@
                     <a class="nav-link active" routerLink="script">Script</a>
                 </li>
                 <li>
-                    <a class="nav-link active" routerLink="user-info">User Info</a>
+                    <a class="nav-link active" *ngIf="auth.isAuthenticated$ | async;" routerLink="user-info">User Info</a>
                 </li>
             </ul>
         </div>

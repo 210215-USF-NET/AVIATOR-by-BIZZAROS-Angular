@@ -26,11 +26,8 @@ import { AboutPageComponent } from './components/about-page/about-page.component
     NavMenuComponent,
     UserInfoComponent,
     ScriptComponent,
-
-
-    
-
     ],
+    
     imports: [
     BrowserModule,
     AppRoutingModule,
