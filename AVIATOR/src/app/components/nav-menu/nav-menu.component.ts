@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { user } from 'src/app/models/user';
-import {UserRESTService} from 'src/app/services/user-rest.service';
+//import {UserRESTService} from 'src/app/services/user-rest.service';
 
 @Component({
   selector: 'app-nav-menu',
