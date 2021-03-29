@@ -16,7 +16,7 @@ export class PilotRESTService {
       }
     )
   }
-  url: string = 'https://localhost:9600/api/jawn';
+  url: string = 'https://p2-apiator.azurewebsites.net/pilot';
   constructor(private http: HttpClient) { }
   AddPilot(pilot2Add: pilot): Observable<pilot>
   {

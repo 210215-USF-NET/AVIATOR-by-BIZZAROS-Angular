@@ -2,6 +2,7 @@ import { user } from "./user";
 export interface pilot 
 {
     producer: user
-    producerID: number
+    producerID: user["ID"]
     name: string
+    description: string
 }

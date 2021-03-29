@@ -14,7 +14,7 @@ export class UserRESTService {
       }
     )
   }
-  url: string = 'https://localhost:44361/swagger/index.html'
+  url: string = 'https://p2-apiator.azurewebsites.net/'
   constructor(private http: HttpClient) { }
   GetUserByEmail(email: string): Observable<user>
   {
