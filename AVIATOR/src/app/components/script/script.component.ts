@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 declare var ParseEngine: any;
 declare var CacheEngine: any;
 declare var FileManagement: any;
+declare var form: FormGroup;
 @Component({
   selector: 'app-script',
   encapsulation: ViewEncapsulation.None,
@@ -13,22 +14,22 @@ declare var FileManagement: any;
 })
 
 export class ScriptComponent implements OnInit {
-  form: FormGroup;
+
+
+  constructor(private formBuilder: FormBuilder) {
+ 
+  }
+  form : FormGroup;
   error: String;
   userId: Number;
   fr: any;
   resultFile: any;
-
-  constructor(private formBuilder: FormBuilder) {
-
-  }
-
   ngOnInit() {
    // new ParseEngine().display(".Content");
     let resultFile = "";
    // new FileManagement().getScreenplay("https://cryptoart20210310221023.azurewebsites.net/xml/reformschool.xml");
-    this.form = this.formBuilder.group({
-      avatar: ['']
+   this.form = this.formBuilder.group({
+      screenplay: ['']
     });
     if (CacheEngine.getCache("Processed")) {
       new ParseEngine().process("",false);
@@ -40,15 +41,16 @@ export class ScriptComponent implements OnInit {
 
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.form.get('avatar').setValue(file);
+      this.form.get('screenplay').setValue(file);
       let Result: any = ""
-      console.log(this.form.get('avatar').value);
+      console.log(this.form.get('screenplay').value);
       let fr = new FileReader();
-      fr.readAsText(this.form.get('avatar').value);
+      fr.readAsText(this.form.get('screenplay').value);
       fr.onload = res => {
         Result = (res.target as FileReader).result;
         new ParseEngine().process(Result,true);
       };
+      
     }
 
 
