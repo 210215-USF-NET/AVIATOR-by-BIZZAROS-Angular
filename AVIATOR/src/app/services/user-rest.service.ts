@@ -26,8 +26,8 @@ export class UserRESTService {
   {
     return this.http.get<user>(`${this.url}s/${id}`, this.httpOptions);
   }
-  EditUser(id: number):Observable<user>
+  EditUser(user2edit: user):Observable<user>
   {
-    return this.http.put<user>(`${this.url}/${id}`, this.httpOptions);
+    return this.http.put<user>(`${this.url}/${user2edit.id}`, user2edit, this.httpOptions);
   }
 }

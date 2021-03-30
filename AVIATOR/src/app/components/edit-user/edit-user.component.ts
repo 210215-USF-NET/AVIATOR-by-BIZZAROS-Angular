@@ -33,9 +33,10 @@ export class EditUserComponent implements OnInit {
     )
   }
   onSubmit(): void{
-    this.userService.EditUser(this.user2update.id).subscribe(
+    this.userService.EditUser(this.user2update).subscribe(
       (user)=>{alert('Information successfully updated!');
-    this.router.navigate(['user-info'])}
+    this.router.navigate(['user-info'])},
+    (error)=> {alert('Something went wrong :('); console.log(this.user2update)}
     )
     //This is a weird error where I'm not even submitting the form data I want?
   }
