@@ -3,7 +3,7 @@ export interface pilot
 {
     id: number,
     Producer: user
-    producerID: user["id"]
+    producerID: number
     pilotName: string
     pilotDescription: string
 }
