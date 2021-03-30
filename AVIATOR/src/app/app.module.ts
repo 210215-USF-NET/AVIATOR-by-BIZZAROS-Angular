@@ -15,6 +15,7 @@ import { AddFileComponent } from './components/add-file/add-file.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { SceneComponent } from './components/scene/scene.component';
+import { SceneDisplayComponent } from './components/scene-display/scene-display.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { SceneComponent } from './components/scene/scene.component';
     UserInfoComponent,
     ScriptComponent,
     SceneComponent,
+    SceneDisplayComponent,
     ],
     
     imports: [

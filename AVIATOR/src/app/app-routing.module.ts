@@ -5,6 +5,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { GetPilotsComponent } from './components/get-pilots/get-pilots.component';
 import { HomeComponent } from './components/home/home.component';
 import { ScriptComponent } from './components/script/script.component';
+import { SceneComponent } from './components/scene/scene.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 
 const routes: Routes = [
@@ -28,6 +29,9 @@ const routes: Routes = [
     {
     path: 'script',
     component: ScriptComponent
+  }, {
+        path: 'scene',
+  component: SceneComponent
     }
 ];
 

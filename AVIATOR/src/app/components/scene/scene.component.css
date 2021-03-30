@@ -29,7 +29,7 @@
   background-color: lightblue;
 }
 .Content {
-  display: none!important;
+  display: none;
 }
 
 .CharacterBlock {
@@ -104,4 +104,24 @@ background-color:green;
   top:0px;
   left:0px;
   height:auto;
+}
+.label {
+  font-size: 30px;
+  font-family: 'Alien Encounters';
+  vertical-align:top;
+}
+.Add {
+  font-size: 12px;
+  font-family: 'Blackout 2 AM';
+  background-color: black;
+  color: white;
+  vertical-align: middle;
+}
+.Upload {
+    margin-left:5px;
+  font-size: 10px;
+  font-family: 'Blackout 2 AM';
+  background-color: black;
+  color: white;
+  vertical-align: middle;
 }

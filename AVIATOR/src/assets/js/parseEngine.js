@@ -11,8 +11,9 @@ var ParseEngine = function () {
         var charname = x.textContent.trim().replace(/\(.*\)/gi, "") + "";
         if (!chars[charname]) {
           chars[charname] = { id: x.textContent.trim().replace(/\(.*\)/gi, "").replace("#", ""), count: 0 }
-
-          chars[charname].uid = "c" + (cid++);
+          if (!chars[charname].uid) {
+            chars[charname].uid = "c" + (cid++);
+          }
         }
         chars[charname].count += 1;
         x.dataset.uid = chars[charname].uid;
@@ -24,7 +25,7 @@ var ParseEngine = function () {
         this.FillCharacters(el[0], chars[charname].id, chars[charname].uid, x.parentElement.parentElement.dataset.uid);
         var clist = document.querySelectorAll(".charlist");
         this.FillCharAnchors(clist[0], chars[charname].id, chars[charname].uid);
-       
+
       }
 
     }
@@ -36,7 +37,9 @@ var ParseEngine = function () {
     var bg = scmod.querySelectorAll(".Scene").forEach(x => {
 
       var e = document.createElement("div");
-      e.dataset.uid = "b"+(count++);
+      if (!e.dataset.uid) {
+        e.dataset.uid = "b" + (count++);
+      }
       e.className = "Background";
       e.innerText = x.innerText;
       var sel = x.parentElement.parentElement.querySelector(".Elements");
@@ -65,8 +68,10 @@ var ParseEngine = function () {
     var dialog = scmod.querySelectorAll(".Dialogue").forEach(x => {
 
       x.dataset.role = self.FindCharForDialogue(x).dataset.uid;
-
-      x.dataset.uid = "d" + (count++);
+      if (!x.dataset.uid) {
+        x.dataset.uid = "d" + (count++);
+      }
+      
       var e = document.createElement("div");
       e.dataset.uid = x.dataset.uid;
       e.className = "DialogueList";
@@ -83,7 +88,7 @@ var ParseEngine = function () {
 
   }
 
-  this.display=function(classitem){
+  this.display = function (classitem) {
   }
 
   this.FillCharacters = function (fill, char, uid, sid) {
@@ -92,9 +97,9 @@ var ParseEngine = function () {
       var e = document.createElement("div");
       e.dataset.uid = uid;
       e.dataset.scene = sid;
-      e.className = "CharList";
+      e.className = "CharacterList";
       e.innerText = char;
-      
+
       fill.appendChild(e);
     }
   }
@@ -114,13 +119,15 @@ var ParseEngine = function () {
       ac.outerHTML += " - ";
     }
   }
-  this.process = function (xmlDoc,purge) {
+  this.process = function (xmlDoc, purge) {
     let scmod = document.getElementById("sceneMaker");
-    if (CacheEngine.getCache("Processed")&&!purge) {
+    if (CacheEngine.getCache("Processed") && !purge) {
       scmod.innerHTML = CacheEngine.getCache("Processed");
+      scmod.querySelectorAll(".Content").forEach(x => x.style.display = "block");
+      scmod.querySelectorAll(".Elements").forEach(x => x.style.display = "none");
       return;
     }
-    if (xmlDoc.innerHtml) { xmlDoc = xmlDoc.innerHTML;}
+    if (xmlDoc.innerHtml) { xmlDoc = xmlDoc.innerHTML; }
     xmlString = xmlDoc.replace(/<Paragraph/g, "<div");
     xmlString = xmlString.replace(/\/Paragraph/g, "\/div");
     xmlString = xmlString.replace(/<ScriptNote/g, '<div class="scriptnote"');
@@ -139,7 +146,7 @@ var ParseEngine = function () {
       if (sceneArray[scene].replace(/span/ig, "").replace(/div/ig, "").replace(/</ig, "").replace(/>/ig, "").replace(/\//ig, "").trim() == "") { continue; }
       var s = document.createElement("div");
       s.className = "Section";
-      s.dataset.uid = "s" + (sid++);    
+      s.dataset.uid = "s" + (sid++);
       section = pilot.appendChild(s);
       var d = document.createElement("div");
       d.className = "Content";
@@ -150,22 +157,39 @@ var ParseEngine = function () {
       var els = section.appendChild(e);
       var eb = document.createElement("div");
       eb.className = "label";
-      eb.innerText = "Background";
+      eb.innerText = "Background   ";
       els.appendChild(eb);
+      let bt = document.createElement("button");
+      bt.className = "Add";
+      bt.innerText = "+";
+      bt.value = "Background";
+      eb.append(bt);
+
       eb = document.createElement("div");
       eb.className = "BackgroundBlock";
       els.appendChild(eb);
+
       eb = document.createElement("div");
       eb.className = "label";
-      eb.innerText = "Characters";
+      eb.innerText = "Characters   ";
       els.appendChild(eb);
+      bt = document.createElement("button");
+      bt.className = "Add";
+      bt.value = "Character";
+      bt.innerText = "+";
+      eb.append(bt);
       eb = document.createElement("div");
       eb.className = "CharacterBlock";
       els.appendChild(eb);
       eb = document.createElement("div");
       eb.className = "label";
-      eb.innerText = "Dialogue";
+      eb.innerText = "Dialogue   ";
       els.appendChild(eb);
+      bt = document.createElement("button");
+      bt.className = "Add";
+      bt.value = "Dialogue";
+      bt.innerText = "+";
+      eb.append(bt);
       eb = document.createElement("div");
       eb.className = "DialogueBlock";
       els.appendChild(eb);
@@ -174,7 +198,41 @@ var ParseEngine = function () {
     }
     this.ParseBackground(pilot);
     this.ParseDialogue(pilot);
-    CacheEngine.setCache("Processed", scmod.innerHTML);    
+    CacheEngine.setCache("Processed", scmod.innerHTML);
+    let converted=this.Convert(scmod.innerHTML);
+    CacheEngine.setCache("Converted", converted);
   }
+  this.AddButton = function (eb) {
+  }
+  this.reProcess = function () {
+    scmod = document.getElementById("sceneMaker").innerHTML;
+    CacheEngine.setCache("Processed", scmod);
+    let converted = this.Convert(scmod);
+    CacheEngine.setCache("Converted", converted);
+  }
+  this.ProcessSaved = function (data) {
+    scmod = document.getElementById("sceneMaker").innerHTML = data;
+    CacheEngine.setCache("Processed", scmod);
+  }
+  this.Convert = function (parsed) {
+    
+      let ScriptPayload = {
+        "pilotID": 3,
+        "scriptBody": parsed,
+        "userID": 1,
+        "scenes": []
+      };
+      let count = 0;
+    document.querySelectorAll(".Section").forEach(x => {
+        ScriptPayload.scenes.push({
+          "sceneIndex": count++,
+          "sceneName": "SceneName",
+          "sceneDescription": "SceneDescription",
+          "parsedID": x.dataset.uid
+        });
+      });
+    return ScriptPayload;
+  }
+
 
 }
