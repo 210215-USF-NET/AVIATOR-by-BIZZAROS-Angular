@@ -14,7 +14,7 @@ import { UserRESTService } from 'src/app/services/user-rest.service';
 export class GetPilotsComponent implements OnInit {
   producer: user;
   pilots: pilot[] = [];
-  constructor(public auth: AuthService, private userService: UserRESTService, private pilotService: PilotRESTService) {
+  constructor(public auth: AuthService, private userService: UserRESTService, private pilotService: PilotRESTService, private router: Router) {
     this.producer = 
     {
       id: 0,
@@ -32,12 +32,14 @@ export class GetPilotsComponent implements OnInit {
     this.userService.GetUserByEmail(user.email).subscribe
     (
       foundUser =>
-      {this.producer = foundUser;
-        
+      {this.producer = foundUser;        
         this.pilotService.GetPilotsByProducerID(foundUser.id).subscribe
         (
           (result) => {this.pilots = result}
         )}
     ));
-  };
+  }
+  GetPilot(id: number) {
+  this.router.navigate(['pilot-details'], {queryParams: {pilot: id}});
+  }
 }

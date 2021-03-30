@@ -16,6 +16,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { SceneComponent } from './components/scene/scene.component';
 import { AddPilotComponent } from './components/add-pilot/add-pilot.component';
+import { PilotDetailsComponent } from './components/pilot-details/pilot-details.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { AddPilotComponent } from './components/add-pilot/add-pilot.component';
     ScriptComponent,
     SceneComponent,
     AddPilotComponent,
+    PilotDetailsComponent,
     ],
     
     imports: [

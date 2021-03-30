@@ -22,16 +22,16 @@ export class PilotRESTService {
   {
     return this.http.post<pilot>(this.url, pilot2Add, this.httpOptions);
   }
-  GetPilotsByEmail(email: string): Observable<pilot[]>
-  {
-    return this.http.get<pilot[]>(this.url, this.httpOptions);
-  }
+  // GetPilotsByEmail(email: string): Observable<pilot[]>
+  // {
+  //   return this.http.get<pilot[]>(this.url, this.httpOptions);
+  // }
   GetPilotsByProducerID(producerID: number): Observable<pilot[]>
   {
     return this.http.get<pilot[]>(`${this.url}?userID=${producerID}`, this.httpOptions);
   }
-  GetPilot(): Observable<pilot[]>
+  GetPilot(id: number): Observable<pilot>
   {
-    return this.http.get<pilot[]>(this.url,this.httpOptions);
+    return this.http.get<pilot>(`${this.url}/${id}`,this.httpOptions);
   }
 }

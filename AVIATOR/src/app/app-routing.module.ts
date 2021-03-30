@@ -8,6 +8,7 @@ import { GetPilotsComponent } from './components/get-pilots/get-pilots.component
 import { HomeComponent } from './components/home/home.component';
 import { ScriptComponent } from './components/script/script.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { PilotDetailsComponent } from './components/pilot-details/pilot-details.component';
 
 const routes: Routes = [
     {
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
     path: 'add-pilot',
     component: AddPilotComponent,
+    },
+    {
+    path:'pilot-details',
+    component: PilotDetailsComponent,
     },
     {
     path: 'user-info',
