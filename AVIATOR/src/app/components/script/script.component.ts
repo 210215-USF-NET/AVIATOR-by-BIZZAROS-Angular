@@ -2,6 +2,9 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ScriptSaveService } from '../../services/script-save.service';
+import { ScriptGetService } from '../../services/script-get.service';
+
 declare var ParseEngine: any;
 declare var CacheEngine: any;
 declare var FileManagement: any;
@@ -16,7 +19,7 @@ declare var form: FormGroup;
 export class ScriptComponent implements OnInit {
 
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private ssave:ScriptSaveService, private sget:ScriptGetService) {
  
   }
   form : FormGroup;
@@ -34,11 +37,18 @@ export class ScriptComponent implements OnInit {
     if (CacheEngine.getCache("Processed")) {
       new ParseEngine().process("",false);
     }
-
+    CacheEngine.onProcessedChange((res) =>
+      this.ssave.SaveScript(res).subscribe(x => console.log(x))
+    );
   }
-  
-  onFileChange(event) {
+  onGet(event) {
+    this.sget.getScript(3).subscribe(x => this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)))
+  };
 
+  onSave(event) {
+   new ParseEngine().reProcess();
+  }
+  onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.form.get('screenplay').setValue(file);

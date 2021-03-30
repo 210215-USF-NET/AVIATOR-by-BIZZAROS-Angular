@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SceneDisplayComponent } from '../scene-display/scene-display.component'
 declare var ParseEngine: any;
 declare var SceneNav: any;
 declare var CacheEngine: any;
@@ -16,6 +17,7 @@ export class SceneComponent implements OnInit {
   userId: Number;
   fr: any;
   resultFile: any;
+  @Input('master') name: string;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -25,6 +27,12 @@ export class SceneComponent implements OnInit {
     this.form = this.formBuilder.group({
       character: ['']
     });
+    
+  }
+  
+  onSave() {
+    //send To dataSave Service
+    //CacheEngine.getCache("Processed");
   }
 
   onFileChange(event) {
@@ -35,11 +43,11 @@ export class SceneComponent implements OnInit {
       let Result: any = ""
       console.log(this.form.get('character').value);
       let fr = new FileReader();
-      Result=fr.readAsDataURL(file);
+      Result = fr.readAsDataURL(file);
       fr.onloadend = res => {
         var myImage = new Image(); // Creates image object
         console.log(res); // Assigns converted image to image object
-       // Draws the image on canvas
+        // Draws the image on canvas
 
         SceneNav.ShowFile(res.srcElement["result"].toString(), true);
       };
