@@ -58,12 +58,10 @@ export class AddPilotComponent implements OnInit {
       }
     )
   );
-  //this.newpilot.Producer = this.producer; //Doesn't work? According to dev tools my account is being fetched.
+  
   }
   onSubmit(): void{
-    this.newpilot.producerID = this.producer.id;; //Also doesn't work.
-    //I think the issue is that it's only sending the form data we send it
-    //Not any code I write here. The fix is probably somehow writing the logic into the form?
+    this.newpilot.producerID = this.producer.id;
     this.pilotService.AddPilot(this.newpilot).subscribe( 
       (pilot)=> { alert('New pilot was added.');
       this.router.navigate(['']);}
