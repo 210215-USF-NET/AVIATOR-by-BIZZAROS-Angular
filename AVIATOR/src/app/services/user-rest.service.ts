@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { user } from '../models/user';
@@ -7,6 +8,7 @@ import { user } from '../models/user';
   providedIn: 'root'
 })
 export class UserRESTService {
+  responseValue: any;
   httpOptions = {
     headers: new HttpHeaders(
       {
@@ -14,10 +16,18 @@ export class UserRESTService {
       }
     )
   }
-  url: string = 'https://localhost:44361/swagger/index.html'
+  url: string = 'https://localhost:44361/api/User'
   constructor(private http: HttpClient) { }
   GetUserByEmail(email: string): Observable<user>
   {
-    return this.http.get<user>(this.url, this.httpOptions);
+    return this.http.get<user>(`${this.url}/email/${email}`, this.httpOptions);
+  }
+  GetUsersByID(id: number): Observable<user>
+  {
+    return this.http.get<user>(`${this.url}s/${id}`, this.httpOptions);
+  }
+  EditUser(id: number):Observable<user>
+  {
+    return this.http.put<user>(`${this.url}/${id}`, this.httpOptions);
   }
 }

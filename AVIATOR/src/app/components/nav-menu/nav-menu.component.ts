@@ -14,21 +14,20 @@ export class NavMenuComponent implements OnInit {
   constructor(public auth:AuthService,private userService: UserRESTService) {
   this.userModel =
   {
-    ID: 0,
-    FirstName: '',
-    LastName: '',
-    Email: '',
-    PhoneNumb: 0,
+    id: 0,
+    userName: '',
+    firstName: '',
+    lastName: '',
+    email: 'jawn',
+    phoneNumb: 0,
     pilots: []
     }
   }
   ngOnInit(): void {
     this.auth.user$.subscribe (
       user =>
-      this.userService.GetUserByEmail(user.email).subscribe
-      (
-        foundUser =>
-        {
+      this.userService.GetUserByEmail(user.email).subscribe(
+        foundUser => {
           this.userModel = foundUser;
         }
       )

@@ -16,14 +16,16 @@ export class AddPilotComponent implements OnInit {
   constructor(private pilotService: PilotRESTService, private router: Router) { 
     this.newpilot =
     {
+      id: 0,
       pilotName: '',
       Producer: 
       {
-        ID: 1,
-        FirstName: '',
-        LastName: '',
-        Email: '',
-        PhoneNumb: 0,
+        userName: '',
+        id: 1,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumb: 0,
         pilots: []
       },
       producerID: 1,
@@ -31,14 +33,15 @@ export class AddPilotComponent implements OnInit {
     }
     this.producer=
     {
-      ID: 1,
-      FirstName: '',
-      LastName: '',
-      Email: '',
-      PhoneNumb: 0,
+      userName: '',
+      id: 1,
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumb: 0,
       pilots: []
     }
-    this.newpilot.Producer = producer;
+    this.newpilot.Producer = this.producer;
   }
 
 

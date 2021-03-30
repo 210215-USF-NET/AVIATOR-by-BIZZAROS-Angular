@@ -15,11 +15,12 @@ export class UserInfoComponent implements OnInit {
 
     this.userModel = 
     {
-      ID: 0,
-      FirstName: '',
-      LastName: '',
-      Email: '',
-      PhoneNumb: 0,
+      userName: '',
+      id: 0,
+      firstName: '',
+      lastName: '',
+      email: 'jawn',
+      phoneNumb: 0,
       pilots: []
     }
   }

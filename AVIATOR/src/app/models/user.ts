@@ -1,10 +1,11 @@
 import { pilot } from "./pilot";
 export interface user
 {
-    FirstName: string,
-    LastName: string,
-    Email: string,
-    PhoneNumb: number,
-    ID: number,
+    userName: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    phoneNumb: number,
+    id: number,
     pilots: pilot[]
 }

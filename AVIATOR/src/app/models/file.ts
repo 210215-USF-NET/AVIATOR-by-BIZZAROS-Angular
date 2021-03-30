@@ -3,7 +3,13 @@ import { user } from "./user";
 
 export interface file
 {
-    pilot: pilot
-    uploader: user
-    fileURL: string
+    ID: number,
+    Pilot: pilot,
+    PilotID: pilot["id"],
+    Uploader: user,
+    UploaderID: user["id"],
+    FileURL: string,
+    FileName: string,
+    FileDescription: string,
+
 }
