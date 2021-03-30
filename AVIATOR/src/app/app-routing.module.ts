@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { AddPilotComponent } from './components/add-pilot/add-pilot.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GetPilotsComponent } from './components/get-pilots/get-pilots.component';
 import { HomeComponent } from './components/home/home.component';
 import { ScriptComponent } from './components/script/script.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
     {
     path: 'user-info',
     component: UserInfoComponent,
+    canActivate: [AuthGuard]
+    },
+    {path: 'user-info/edit-user',
+    component: EditUserComponent,
     canActivate: [AuthGuard]
     },
     {

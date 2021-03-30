@@ -11,7 +11,7 @@ import { pilot } from 'src/app/models/pilot';
 })
 export class UserInfoComponent implements OnInit {
   userModel: user;
-  constructor(public auth: AuthService, private userService: UserRESTService, private router: Router) {
+  constructor(public auth: AuthService, private userService: UserRESTService) {
 
     this.userModel = 
     {
