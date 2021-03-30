@@ -43,8 +43,6 @@ export class AddPilotComponent implements OnInit {
       producerID: 0,
       pilotDescription: ''
     }
-
-    //this.newpilot.producerID = this.producer.id;
   }
 
 

@@ -26,7 +26,11 @@ export class PilotRESTService {
   {
     return this.http.get<pilot[]>(this.url, this.httpOptions);
   }
-  GetPilots(): Observable<pilot[]>
+  GetPilotsByProducerID(producerID: number): Observable<pilot[]>
+  {
+    return this.http.get<pilot[]>(`${this.url}?userID=${producerID}`, this.httpOptions);
+  }
+  GetPilot(): Observable<pilot[]>
   {
     return this.http.get<pilot[]>(this.url,this.httpOptions);
   }

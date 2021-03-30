@@ -5,9 +5,9 @@ export interface file
 {
     ID: number,
     Pilot: pilot,
-    PilotID: pilot["id"],
+    PilotID: number,
     Uploader: user,
-    UploaderID: user["id"],
+    UploaderID: number,
     FileURL: string,
     FileName: string,
     FileDescription: string,

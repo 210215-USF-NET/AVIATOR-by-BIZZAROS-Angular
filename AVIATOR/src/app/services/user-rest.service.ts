@@ -16,7 +16,7 @@ export class UserRESTService {
       }
     )
   }
-  url: string = 'https://localhost:44361/api/User'
+  url: string = 'https://p2-apiator.azurewebsites.net/api/user'
   constructor(private http: HttpClient) { }
   GetUserByEmail(email: string): Observable<user>
   {

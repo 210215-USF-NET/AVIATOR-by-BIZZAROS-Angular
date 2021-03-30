@@ -2,12 +2,14 @@
     <table class="table">
         <thead>
             <th>Pilot Name</th>
-            <th>Producer</th>
+            <th>Description</th>
             <th></th>
         </thead>
         <tbody>
-            <td>LOL</td>
-            <td>LOL</td>
+        <tr *ngFor="let pilot of pilots;">
+            <td>{{pilot.pilotName}}</td>
+            <td>{{pilot.pilotDescription}}</td>
+        </tr>
         </tbody>
     </table>
 </div>
