@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { user } from 'src/app/models/user';
 import {UserRESTService} from 'src/app/services/user-rest.service';
-import { pilot } from 'src/app/models/pilot';
 
 @Component({
   selector: 'app-nav-menu',
