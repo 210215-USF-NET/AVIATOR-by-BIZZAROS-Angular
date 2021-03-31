@@ -33,7 +33,7 @@ export class SceneComponent implements OnInit {
   }
   
   onSave() {
- 
+
   }
   submitForm(event) {
     var formData: any = new FormData();
@@ -53,7 +53,7 @@ export class SceneComponent implements OnInit {
    // return;
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-       
+      
       this.form.get('character').setValue(file);
       let Result: any = "";
       this.submitForm(event);

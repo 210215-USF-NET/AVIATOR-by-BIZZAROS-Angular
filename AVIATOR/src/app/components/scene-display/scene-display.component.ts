@@ -8,7 +8,7 @@ import { sceneDisplay } from '../../models/sceneDisplay';
 })
 export class SceneDisplayComponent implements OnInit {
 
- 
+
   @Input()
   display: sceneDisplay = {
     assetName: "name",

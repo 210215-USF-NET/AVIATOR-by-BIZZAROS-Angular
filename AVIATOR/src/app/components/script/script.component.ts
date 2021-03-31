@@ -30,8 +30,8 @@ export class ScriptComponent implements OnInit {
     let resultFile = "";
    // new FileManagement().getScreenplay("https://cryptoart20210310221023.azurewebsites.net/xml/reformschool.xml");
 
-   this.form = this.formBuilder.group({
-     screenplay: ['']
+  this.form = this.formBuilder.group({
+    screenplay: ['']
     });
     if (CacheEngine.getCache("Processed")) {
       new ParseEngine().process("",false);
@@ -45,7 +45,7 @@ export class ScriptComponent implements OnInit {
   };
 
   onSave(event) {
-   new ParseEngine().reProcess();
+  new ParseEngine().reProcess();
   }
   onFileChange(event) {
     if (event.target.files.length > 0) {
