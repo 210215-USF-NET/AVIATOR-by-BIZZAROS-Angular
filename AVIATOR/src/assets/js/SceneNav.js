@@ -1,4 +1,4 @@
-import { forEachChild } from "typescript";
+
 
 SceneNav = new (function () {
   let self = this;
@@ -10,20 +10,22 @@ SceneNav = new (function () {
   this.data = "";
   this.cached = false;
   this.target = "";
+  this.ContextElement = "";
   this.Populate = function (fill, data) {
-    if (data == "") { return;}
+    if (data == "") { return; }
     self.fill = fill;
-    var hack = document.createElement("div");
-    if (!self.cached){ 
+    let hack = document.createElement("div");
+    if (!self.cached) {
       hack.innerHTML = data;
       self.data = hack;
       self.cached = true;
     }
+    self.data.querySelectorAll(".Content").forEach(x => x.style.display = "none");
+    self.data.querySelectorAll(".Elements").forEach(x => x.style.display = "block");
     hack = self.data;
     var start = self.Current;
-    console.log(fill);
     self.Scenes = hack.querySelectorAll(".Section");
-    if (self.Scenes.length<1) {
+    if (self.Scenes.length < 1) {
       self.cached = false;
       return;
     }
@@ -34,19 +36,19 @@ SceneNav = new (function () {
     }
     self.CreateNavItem(self.Scenes[Math.max(self.Current - 10, 0)].dataset.uid, "<*", fill, Math.max(self.Current - 10, 0));
     self.CreateNavItem(self.Scenes[Math.max(self.Current - 1, 0)].dataset.uid, "<", fill, Math.max(self.Current - 1, 0));
-    for (var i = start; i < Math.min(start + self.MaxShow, self.Length - 2); i++){
+    for (var i = start; i < Math.min(start + self.MaxShow, self.Length - 2); i++) {
 
-      self.CreateNavItem(self.Scenes[i].dataset.uid, self.Scenes[i].dataset.uid, fill,i);
+      self.CreateNavItem(self.Scenes[i].dataset.uid, self.Scenes[i].dataset.uid, fill, i);
     }
     self.CreateNavItem(self.Scenes[Math.min(self.Current + 1, self.Length - 1)].dataset.uid, ">", fill, Math.min(self.Current + 1, self.Length - 1));
     self.CreateNavItem(self.Scenes[Math.min(self.Current + 10, self.Length - 1)].dataset.uid, "*>", fill, Math.min(self.Current + 10, self.Length - 1));
   }
-  this.CreateNavItem = function (id,innerText,fill,eid) {
+  this.CreateNavItem = function (id, innerText, fill, eid) {
     el = document.createElement("div");
-    el.className  = "sceneNav";
+    el.className = "sceneNav";
     el.dataset.suid = id;
     el.dataset.id = eid;
-    el.addEventListener("click", function () { self.LoadScene(id,eid) },false);
+    el.addEventListener("click", function () { self.LoadScene(id, eid) }, false);
     el.innerText = innerText;
     fill.append(el);
   }
@@ -57,21 +59,22 @@ SceneNav = new (function () {
     attachee.addEventListener("click", function () { self.ShowAsset(); });
     attachee = document.querySelector('.AssetDescription');
     attachee.addEventListener("input", function () { self.target.dataset.desc = this.innerText; self.Save(); });
-    attachee = document.querySelector('.AddCharacter');
-    attachee.addEventListener("click", function () { self.AddCharacterToScene(); });
+    attachee = document.querySelectorAll('.Add').forEach(x => {
+      x.addEventListener("click", function (e) { self.AddAssetToScene(e.target.value); });
+    });
   }
 
-  this.AddCharacterToScene = function () {
+  this.AddAssetToScene = function (val) {
+
     let pilot = self.data.querySelector(".Pilot");
     let xtraAsset = pilot.dataset.xtraAssets++;
     let Section = document.querySelector(".Elements");
-    console.log(Section);
     let Character = document.createElement("div");
-    Character.className = "CharList";
-    Character.dataset.uid = "x" + xtraAsset;
+    Character.className = val + "List";
+    Character.dataset.uid = val.toLowerCase().substring(0, 1) + xtraAsset + "x";
     Character.innerText = "add Name Here";
     Character.contentEditable = "true";
-    let Block = Section.querySelector(".CharacterBlock");
+    let Block = Section.querySelector("." + val + "Block");
     Block.append(Character);
     Character.addEventListener("input", function () { self.Save(); });
     self.ContextFunction(Character);
@@ -85,18 +88,15 @@ SceneNav = new (function () {
     CacheEngine.setCache("Processed", self.data.innerHTML);
   }
 
-  this.ContextFunction = function (x) {
-    x.addEventListener("contextmenu", (e) => {
+  this.ContextFunction = function (x, action) {
+    x.addEventListener(action, (e) => {
       e.preventDefault();
 
       let select = document.querySelector(".context");
       select.style.display = "block";
-
       select.style.position = "absolute";
       select.style.left = (e.pageX - (50)) + "px";
-
       select.style.top = (e.pageY - (50)) + "px";
-      console.log(select.style.left);
       self.target = x;
       let listener = function (e) {
         if (e.target.className != "menuItem") { e.target.style.display = "none"; select.removeEventListener("mouseout", listener); };
@@ -107,14 +107,18 @@ SceneNav = new (function () {
 
   this.attachContent = function (sc) {
 
-   let list = sc.querySelectorAll('.CharList').forEach(x => {
-      self.ContextFunction(x);
-   });
-   list = sc.querySelectorAll('.Background').forEach(x => {
-      self.ContextFunction(x);
-   });
+    let list = sc.querySelectorAll('.CharacterList').forEach(x => {
+      self.ContextFunction(x, "contextmenu");
+      self.ContextFunction(x, "click");
+      x.append(self.CreateButton());
+    });
+    list = sc.querySelectorAll('.BackgroundList').forEach(x => {
+      self.ContextFunction(x, "contextmenu");
+      self.ContextFunction(x, "click");
+    });
     list = sc.querySelectorAll('.DialogueList').forEach(x => {
-      self.ContextFunction(x);
+      self.ContextFunction(x, "contextmenu");
+      self.ContextFunction(x, "click");
     });
     self.AddListeners();
   }
@@ -123,7 +127,12 @@ SceneNav = new (function () {
     self.ShowFile(self.target.dataset.asset);
   }
 
-
+  this.CreateButton = function () {
+    bt = document.createElement("button");
+    bt.className = "Upload";
+    bt.innerText = "^";
+    return bt;
+  }
 
 
 
@@ -147,7 +156,7 @@ SceneNav = new (function () {
       let im = displayImage.querySelector(".VideoAsset");
       //selecter = ".DisplayBackground";
       im.src = res;
-      al.al=im.addEventListener("load", setTimeout(im.play(),1000));
+      al.al = im.addEventListener("load", setTimeout(im.play(), 1000));
       return;
 
     }
@@ -160,17 +169,23 @@ SceneNav = new (function () {
     let im = displayImage.querySelector("img");
     im.addEventListener("load", function () { item.style.height = window.getComputedStyle(this, null).getPropertyValue("height"); })
     let displayName = document.querySelector(".AssetName");
-    displayName.innerText = self.target.innerText;
+    displayName.innerText = self.target.innerText.replace("^", "");
     let displayDesc = document.querySelector(".AssetDescription");
     displayDesc.innerText = desc;
 
   }
-
+  this.Gather = function () {
+    return {
+      id: self.target.dataset.uid,
+      desc:self.target.dataset.desc
+    }
+  }
   this.LoadScene = function (id, eid) { self.Current = eid; self.fill.innerHTML = ""; self.Populate(self.fill, self.data); self.ExposeScene(id); }
   this.ExposeScene = function (id) {
     var sc = document.querySelector(".SceneContent");
 
     sc.innerHTML = self.data.querySelector('[data-uid="' + id + '"]').innerHTML;
+
     self.attachContent(sc);
     let item = document.querySelectorAll("img").forEach(x => x.outerHTML = "");
     document.querySelector(".DisplayItem").style.height = "0px";

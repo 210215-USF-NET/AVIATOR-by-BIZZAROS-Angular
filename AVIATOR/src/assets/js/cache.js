@@ -1,5 +1,8 @@
 CacheEngine = new (function () {
   this.cache = new Array();
+  this.callback = function () {
+    console.log()
+  };
   this.purge = function (ckey) {
     if (ckey == "all") {
       this.cache = new Array();
@@ -18,7 +21,10 @@ CacheEngine = new (function () {
   };
   this.setCache = function (ckey, cacheitem) {
     this.cache[ckey] = cacheitem;
+    if (ckey == "Converted" && cacheitem!="") {
+      this.callback(cacheitem);
+    }
   };
-
+  this.onProcessedChange = function (cb) { this.callback = cb; };
 })();
 

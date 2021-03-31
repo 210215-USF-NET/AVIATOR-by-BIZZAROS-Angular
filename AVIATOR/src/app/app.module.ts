@@ -17,6 +17,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { SceneComponent } from './components/scene/scene.component';
 import { AddPilotComponent } from './components/add-pilot/add-pilot.component';
 import { PilotDetailsComponent } from './components/pilot-details/pilot-details.component';
+import { SceneDisplayComponent } from './components/scene-display/scene-display.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { PilotDetailsComponent } from './components/pilot-details/pilot-details.
     SceneComponent,
     AddPilotComponent,
     PilotDetailsComponent,
+    SceneDisplayComponent,
     ],
     
     imports: [

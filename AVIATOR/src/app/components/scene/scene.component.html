@@ -1,0 +1,20 @@
+<div class="navScene"></div>
+<div class="buttons">
+  <input class="Save" type="button" value="Save Your Changes" (click)="onSave()" />
+</div>
+<!--div class="videoAsset"><video src="" width="200" height="100" controls></video></div-->
+<div class="DisplayItem" id="DisplayItem">
+  <div class="Display" style="position:relative;width:100%">
+    <div class="DisplayBackground"></div>
+    <div class="AssetDescription" contentEditable="true"></div>
+    <div class="AssetImg"></div>
+    <div class="AssetName"></div>
+  </div>
+</div>
+<div class="SceneContent"></div><div class="test"></div>
+<div class="context">
+  <div class="menuItem">
+    <form [formGroup]="form" class="menuItem"><input type="file" name="character" class="menuItem"  (change)="onFileChange($event)" /></form>
+  </div>
+  <div class="menuItem" data-action="show">Show Asset</div>
+</div>

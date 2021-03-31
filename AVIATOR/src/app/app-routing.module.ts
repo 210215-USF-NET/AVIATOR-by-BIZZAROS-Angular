@@ -7,6 +7,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GetPilotsComponent } from './components/get-pilots/get-pilots.component';
 import { HomeComponent } from './components/home/home.component';
 import { ScriptComponent } from './components/script/script.component';
+import { SceneComponent } from './components/scene/scene.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { PilotDetailsComponent } from './components/pilot-details/pilot-details.component';
 
@@ -43,6 +44,9 @@ const routes: Routes = [
     {
     path: 'script',
     component: ScriptComponent
+  }, {
+        path: 'scene',
+  component: SceneComponent
     }
 ];
 
