@@ -62,3 +62,4 @@ export class ScriptComponent implements OnInit {
       
     }
   }
+}

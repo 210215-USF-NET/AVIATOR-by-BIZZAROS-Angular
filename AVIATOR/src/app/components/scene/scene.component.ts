@@ -64,5 +64,5 @@ export class SceneComponent implements OnInit {
         var myImage = new Image();  
       };
     }
-
+  }
 }
