@@ -11,11 +11,10 @@
     <div class="AssetName"></div>
   </div>
 </div>
-<app-scene-display></app-scene-display>
-<div class="SceneContent"></div><div class="test">{{name}}</div>
+<div class="SceneContent"></div><div class="test"></div>
 <div class="context">
   <div class="menuItem">
-    <form [formGroup]="form" class="menuItem"><input type="file" name="character" class="menuItem" (change)="onFileChange($event)" /></form>
+    <form [formGroup]="form" class="menuItem"><input type="file" name="character" class="menuItem"  (change)="onFileChange($event)" /></form>
   </div>
   <div class="menuItem" data-action="show">Show Asset</div>
 </div>

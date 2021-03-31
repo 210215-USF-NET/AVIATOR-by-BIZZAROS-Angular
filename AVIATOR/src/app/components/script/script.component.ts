@@ -32,7 +32,7 @@ export class ScriptComponent implements OnInit {
     let resultFile = "";
    // new FileManagement().getScreenplay("https://cryptoart20210310221023.azurewebsites.net/xml/reformschool.xml");
    this.form = this.formBuilder.group({
-      screenplay: ['']
+     screenplay: ['']
     });
     if (CacheEngine.getCache("Processed")) {
       new ParseEngine().process("",false);

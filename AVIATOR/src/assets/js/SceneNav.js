@@ -10,6 +10,7 @@ SceneNav = new (function () {
   this.data = "";
   this.cached = false;
   this.target = "";
+  this.ContextElement = "";
   this.Populate = function (fill, data) {
     if (data == "") { return; }
     self.fill = fill;
@@ -173,7 +174,12 @@ SceneNav = new (function () {
     displayDesc.innerText = desc;
 
   }
-
+  this.Gather = function () {
+    return {
+      id: self.target.dataset.uid,
+      desc:self.target.dataset.desc
+    }
+  }
   this.LoadScene = function (id, eid) { self.Current = eid; self.fill.innerHTML = ""; self.Populate(self.fill, self.data); self.ExposeScene(id); }
   this.ExposeScene = function (id) {
     var sc = document.querySelector(".SceneContent");
