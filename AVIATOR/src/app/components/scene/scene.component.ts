@@ -65,6 +65,4 @@ export class SceneComponent implements OnInit {
       };
     }
 
-
-  }
 }

@@ -17,8 +17,6 @@ declare var form: FormGroup;
 })
 
 export class ScriptComponent implements OnInit {
-
-
   constructor(private formBuilder: FormBuilder,private ssave:ScriptSaveService, private sget:ScriptGetService) {
  
   }
@@ -31,6 +29,7 @@ export class ScriptComponent implements OnInit {
    // new ParseEngine().display(".Content");
     let resultFile = "";
    // new FileManagement().getScreenplay("https://cryptoart20210310221023.azurewebsites.net/xml/reformschool.xml");
+
    this.form = this.formBuilder.group({
      screenplay: ['']
     });
@@ -61,9 +60,5 @@ export class ScriptComponent implements OnInit {
         new ParseEngine().process(Result,true);
       };
       
-    }
-
-
-
     }
   }

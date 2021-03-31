@@ -1,9 +1,12 @@
 import { pilot } from "./pilot";
 import { user } from "./user";
 
-export interface file
+export interface contributor
 {
+    id: number
     pilot: pilot
-    uploader: user
-    fileURL: string
+    pilotID: number
+    user: user
+    userID: number
+    
 }

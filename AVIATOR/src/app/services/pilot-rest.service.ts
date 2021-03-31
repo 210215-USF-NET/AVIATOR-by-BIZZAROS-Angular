@@ -16,18 +16,22 @@ export class PilotRESTService {
       }
     )
   }
-  url: string = 'https://localhost:9600/api/jawn';
+  url: string = 'https://p2-apiator.azurewebsites.net/pilot';
   constructor(private http: HttpClient) { }
   AddPilot(pilot2Add: pilot): Observable<pilot>
   {
     return this.http.post<pilot>(this.url, pilot2Add, this.httpOptions);
   }
-  GetPilotsByEmail(email: string): Observable<pilot[]>
+  // GetPilotsByEmail(email: string): Observable<pilot[]>
+  // {
+  //   return this.http.get<pilot[]>(this.url, this.httpOptions);
+  // }
+  GetPilotsByProducerID(producerID: number): Observable<pilot[]>
   {
-    return this.http.get<pilot[]>(this.url, this.httpOptions);
+    return this.http.get<pilot[]>(`${this.url}?userID=${producerID}`, this.httpOptions);
   }
-  GetPilots(): Observable<pilot[]>
+  GetPilot(id: number): Observable<pilot>
   {
-    return this.http.get<pilot[]>(this.url,this.httpOptions);
+    return this.http.get<pilot>(`${this.url}/${id}`,this.httpOptions);
   }
 }
