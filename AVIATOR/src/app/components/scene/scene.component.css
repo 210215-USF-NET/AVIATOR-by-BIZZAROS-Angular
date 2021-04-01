@@ -1,13 +1,13 @@
 .Elements {
-    width:100%;
-  margin: 15px;
+  width: 100%;
+  margin: 0 auto;
   padding: 10px;
   border-width: 2px;
   float: right;
   display: inline-block;
   overflow: hidden;
-  clear:both;
-  align-content:center;
+  clear: both;
+  align-content: center;
 }
 .BackgroundBlock {
   margin: 15px;
@@ -17,15 +17,27 @@
   display: block;
   display: inline-block;
 }
-.CharList:hover{
+.CharacterList{
+    display:inline;
+}
+.DialogueList{
+    display:inline;
+}
+.BackgroundList{
+    display:inline;
+}
+.CharacterList:hover {
+  background-color: lightblue;
+}
+.DialogueList:hover{
     background-color:lightblue;
 }
-.DialougeList:hover{
-    background-color:lightblue;
+.menuItem:hover {
+  background-image: radial-gradient(circle,black,#003366,black);
+  color: white;
 }
 
-
-.Background:hover {
+.BackgroundList:hover {
   background-color: lightblue;
 }
 .Content {
@@ -37,7 +49,7 @@
   padding: 10px;
   border-width: 2px;
   border-style: solid;
-  display: block
+  display: inline-block
 }
 
 .DialogueBlock {
@@ -45,7 +57,7 @@
   padding: 10px;
   border-width: 2px;
   border-style: solid;
-  display: block;
+  display: inline-block;
 }
 
 .navScene {
@@ -54,8 +66,9 @@
 }
 
 .sceneNav {
-  color: orangered;
+  color: black;
   display: inline;
+  font-weight:bold;
   margin: 5px;
   user-select: none;
 }
@@ -66,17 +79,32 @@ background-color:green;
 .CharList{
     position:relative;
 }
-
-.context {
-    position:absolute;
-    left:0px;
-    top:0px;
+.videoAsset{
     display:none;
-    border:solid;
-    background-color:white;
-    z-index:200;
-    padding:5px;
-    backdrop-filter:blur();
+}
+.context {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: none;
+  border: solid;
+  background-color: white;
+  z-index: 200;
+  padding: 5px;
+  backdrop-filter: blur();
+  cursor: pointer;
+}
+.contextClaimed {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: none;
+  border: solid;
+  background-color: white;
+  z-index: 200;
+  padding: 5px;
+  backdrop-filter: blur();
+  cursor: pointer;
 }
 .AssetName {
   position: absolute;
@@ -97,7 +125,8 @@ background-color:green;
   position: relative;
   display:inline-block;
   top:0px;
-  float: right;
+  margin:20px;
+  float:none;
 }
 .DisplayBackground {
   position: absolute;
@@ -118,10 +147,34 @@ background-color:green;
   vertical-align: middle;
 }
 .Upload {
+    display:inline;
     margin-left:5px;
   font-size: 10px;
   font-family: 'Blackout 2 AM';
   background-color: black;
   color: white;
   vertical-align: middle;
+}
+.Save{
+    display:inline;
+
+}
+.buttons{
+    width:100%;
+
+}
+
+.SceneLabel{
+    width:30%;
+    margin:0 auto;
+}
+.SceneContent{
+    width:100%;
+    margin:0 auto;
+}
+.DisplayItem {
+    width:75%;
+    margin:0 auto;
+    padding:20px;
+    
 }
