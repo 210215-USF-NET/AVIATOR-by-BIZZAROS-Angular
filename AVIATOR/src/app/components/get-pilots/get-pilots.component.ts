@@ -43,6 +43,6 @@ export class GetPilotsComponent implements OnInit {
   this.router.navigate(['pilot-details'], {queryParams: {pilot: id}});
   }
   onGet(event){
-    this.router.navigate(['pilot-details'], {queryParams: {pilot: 3}});
+    this.router.navigate(['pilot-details'], {queryParams: {pilot: 6}});
   }
 }

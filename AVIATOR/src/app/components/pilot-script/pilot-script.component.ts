@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ScriptGetService } from 'src/app/services/script-get.service';
+import { ScriptSaveService } from 'src/app/services/script-save.service';
 
 @Component({
   selector: 'app-pilot-script',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PilotScriptComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sget:ScriptGetService) { }
 
   ngOnInit(): void {
   }
