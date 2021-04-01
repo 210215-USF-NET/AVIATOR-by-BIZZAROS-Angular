@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pilot } from 'src/app/models/pilot';
 import { PilotRESTService } from 'src/app/services/pilot-rest.service';
+import { ScriptGetService } from 'src/app/services/script-get.service';
 
+declare var ParseEngine: any;
 @Component({
   selector: 'app-pilot-details',
   templateUrl: './pilot-details.component.html',
@@ -10,11 +12,11 @@ import { PilotRESTService } from 'src/app/services/pilot-rest.service';
 })
 export class PilotDetailsComponent implements OnInit {
   pilot: pilot;
-  constructor(private pilotService: PilotRESTService, private route: ActivatedRoute) {
+  constructor(private pilotService: PilotRESTService, private route: ActivatedRoute, private sget: ScriptGetService) {
   this.pilot =
   {
     id: 0,
-    Producer:
+    producer:
     {
       userName: '',
       firstName: '',
@@ -27,6 +29,25 @@ export class PilotDetailsComponent implements OnInit {
     producerID: 0,
     pilotName: '',
     pilotDescription: '',
+    script:
+    {
+      id : 0,
+      scriptwriter: 
+      {
+        userName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumb: 0,
+        id: 0,
+        pilots: []
+      },
+      scriptwriterID: 0,
+      pilotID: 0,
+      scriptURL :''
+    },
+    scenes: [],
+    files: []
   }
   }
 
@@ -36,7 +57,10 @@ export class PilotDetailsComponent implements OnInit {
       this.pilotService.GetPilot(params.pilot).subscribe(
       foundPilot => {this.pilot = foundPilot;}
     )}
-  )
-  }
+  )}
+  //write script
+  // onGet(event) {
+  //   this.sget.getScript(3).subscribe(x => this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)))
+  // };
 
 }

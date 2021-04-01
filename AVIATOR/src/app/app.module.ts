@@ -18,6 +18,7 @@ import { SceneComponent } from './components/scene/scene.component';
 import { AddPilotComponent } from './components/add-pilot/add-pilot.component';
 import { PilotDetailsComponent } from './components/pilot-details/pilot-details.component';
 import { SceneDisplayComponent } from './components/scene-display/scene-display.component';
+import { PilotScriptComponent } from './components/pilot-script/pilot-script.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { SceneDisplayComponent } from './components/scene-display/scene-display.
     AddPilotComponent,
     PilotDetailsComponent,
     SceneDisplayComponent,
+    PilotScriptComponent,
     ],
     
     imports: [

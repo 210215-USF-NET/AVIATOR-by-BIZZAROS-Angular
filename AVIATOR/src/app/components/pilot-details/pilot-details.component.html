@@ -3,11 +3,15 @@
         <thead>
             <th>Pilot Name</th>
             <th>Description</th>
-            <th></th>
+            <th>Producer</th>
+            <th>Script Writer</th>
         </thead>
         <tbody>
             <td>{{pilot.pilotName}}</td>
             <td>{{pilot.pilotDescription}}</td>
+            <td>{{pilot.producer.userName}}</td>
+            <td>{{pilot.script.scriptwriter.userName}}</td>
+            <!-- <button type="submit" class="btn btn-primary" (click)="onGet($event)">View Script</button> -->
         </tbody>
     </table>
 </div>
