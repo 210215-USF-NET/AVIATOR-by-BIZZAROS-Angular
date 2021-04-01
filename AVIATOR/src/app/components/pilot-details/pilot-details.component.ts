@@ -4,6 +4,7 @@ import { pilot } from 'src/app/models/pilot';
 import { PilotRESTService } from 'src/app/services/pilot-rest.service';
 import { ScriptGetService } from 'src/app/services/script-get.service';
 
+declare var CacheEngine: any;
 declare var ParseEngine: any;
 @Component({
   selector: 'app-pilot-details',
@@ -56,7 +57,7 @@ export class PilotDetailsComponent implements OnInit {
   this.route.queryParams.subscribe(
     params =>{
       this.pilotService.GetPilot(params.pilot).subscribe(
-      foundPilot => {this.pilot = foundPilot;}
+        foundPilot => { this.pilot = foundPilot; CacheEngine.pilot=this.pilot.id;}
     )}
   )}  
   onGet(event){

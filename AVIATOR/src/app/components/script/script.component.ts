@@ -2,11 +2,12 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '@auth0/auth0-angular';
 import { ScriptSaveService } from '../../services/script-save.service';
 import { ScriptGetService } from '../../services/script-get.service';
+import { UserRESTService } from 'src/app/services/user-rest.service';
 import { ActivatedRoute } from '@angular/router';
 import { script } from 'src/app/models/script';
-
 
 declare var ParseEngine: any;
 declare var CacheEngine: any;
@@ -40,25 +41,25 @@ export class ScriptComponent implements OnInit {
         pilotID: 0,
         scriptURL: '',
       }
-  }
+}
   form : FormGroup;
   error: String;
   userId: Number;
   fr: any;
   resultFile: any;
   ngOnInit() {
-   // new ParseEngine().display(".Content");
+    this.auth.user$.subscribe(user =>
+      this.userService.GetUserByEmail(user.email).subscribe
+        (
+          foundUser => {
+            CacheEngine.user = foundUser.id;
+          }
+        )
+    );
     let resultFile = "";
-  //  new FileManagement().getScreenplay("https://cryptoart20210310221023.azurewebsites.net/xml/reformschool.xml");
-   this.route.queryParams.subscribe(
-    params =>{
-      this.sget.getScript(params.script).subscribe(x => 
-        this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y))
-    )}
-  )
-  
-  this.form = this.formBuilder.group({
-    screenplay: ['']
+
+   this.form = this.formBuilder.group({
+     screenplay: ['']
     });
     if (CacheEngine.getCache("Processed")) {
       new ParseEngine().process("",false);
@@ -68,7 +69,7 @@ export class ScriptComponent implements OnInit {
     );
   }
   onGet(event) {
-    this.sget.getScript(3).subscribe(x => this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)))
+    this.sget.getScript(CacheEngine.pilot).subscribe(x => this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)))
   };
 
   onSave(event) {
@@ -88,5 +89,8 @@ export class ScriptComponent implements OnInit {
       };
       
     }
+
+
+
+    }
   }
-}

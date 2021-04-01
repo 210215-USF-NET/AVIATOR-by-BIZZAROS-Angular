@@ -3,7 +3,6 @@ import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { user } from '../models/user';
-
 @Injectable({
   providedIn: 'root'
 })

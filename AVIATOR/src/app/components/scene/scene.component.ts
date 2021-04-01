@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SceneDisplayComponent } from '../scene-display/scene-display.component'
+import { ScriptSaveService } from '../../services/script-save.service';
 import { FileSaveService } from '../../services/file-save.service';
 declare var ParseEngine: any;
 declare var SceneNav: any;
@@ -20,7 +20,7 @@ export class SceneComponent implements OnInit {
   resultFile: any;
   fileName: string="";
   @Input('master') name: string;
-  constructor(private formBuilder: FormBuilder,private fileSave:FileSaveService) { }
+  constructor(private formBuilder: FormBuilder, private fileSave: FileSaveService, private ssave: ScriptSaveService) { }
   
   ngOnInit() {
     if (CacheEngine.getCache("Processed")) {
@@ -29,17 +29,19 @@ export class SceneComponent implements OnInit {
     this.form = this.formBuilder.group({
       character: ['']
     });
-    
+    CacheEngine.onProcessedChange((res) =>
+      this.ssave.SaveScript(res).subscribe(x => console.log(x))
+    );
   }
   
   onSave() {
-
+    SceneNav.UpdateScript();
   }
   submitForm(event) {
     var formData: any = new FormData();
-    formData.append("UserID", "1");
+    formData.append("UserID", CacheEngine.user);
     formData.append("File", this.form.get('character').value);
-    formData.append("PilotID", "3");
+    formData.append("PilotID", CacheEngine.pilot);
     formData.append("FileName", "a2"+this.form.get('character').value.name);
     formData.append("FileDescription", SceneNav.Gather().desc);
     formData.append("ParsedId", SceneNav.Gather().id);

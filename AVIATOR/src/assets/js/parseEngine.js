@@ -223,15 +223,18 @@ var ParseEngine = function () {
     CacheEngine.setCache("Converted", converted);
   }
   this.ProcessSaved = function (data) {
-    scmod = document.getElementById("sceneMaker").innerHTML = data;
-    CacheEngine.setCache("Processed", scmod);
+    let scmod = document.getElementById("sceneMaker")
+    scmod.innerHTML = data;
+    CacheEngine.setCache("Processed", data);
+    scmod.querySelectorAll(".Content").forEach(x => x.style.display = "block");
+    scmod.querySelectorAll(".Elements").forEach(x => x.style.display = "none");
   }
   this.Convert = function (parsed) {
     
       let ScriptPayload = {
-        "pilotID": 3,
+        "pilotID": CacheEngine.pilot,
         "scriptBody": parsed,
-        "userID": 1,
+        "userID": CacheEngine.user,
         "scenes": []
       };
       let count = 0;
