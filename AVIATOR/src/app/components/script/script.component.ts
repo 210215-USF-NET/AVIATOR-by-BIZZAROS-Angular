@@ -6,6 +6,8 @@ import { AuthService } from '@auth0/auth0-angular';
 import { ScriptSaveService } from '../../services/script-save.service';
 import { ScriptGetService } from '../../services/script-get.service';
 import { UserRESTService } from 'src/app/services/user-rest.service';
+import { ActivatedRoute } from '@angular/router';
+import { script } from 'src/app/models/script';
 
 declare var ParseEngine: any;
 declare var CacheEngine: any;
@@ -19,11 +21,27 @@ declare var form: FormGroup;
 })
 
 export class ScriptComponent implements OnInit {
-
-
-  constructor(private formBuilder: FormBuilder, private ssave: ScriptSaveService, private sget: ScriptGetService, public auth: AuthService, private userService: UserRESTService) {
- 
-  }
+  script: script;
+  constructor(private formBuilder: FormBuilder,private ssave:ScriptSaveService, private sget:ScriptGetService,
+    private route: ActivatedRoute) {
+      this.script =
+      {
+        id: 0,
+        scriptwriter:
+        {
+          id: 0,
+          userName: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          phoneNumb: 0,
+          pilots: []
+        },
+        scriptwriterID: 0,
+        pilotID: 0,
+        scriptURL: '',
+      }
+}
   form : FormGroup;
   error: String;
   userId: Number;
@@ -39,6 +57,7 @@ export class ScriptComponent implements OnInit {
         )
     );
     let resultFile = "";
+
    this.form = this.formBuilder.group({
      screenplay: ['']
     });
@@ -54,7 +73,7 @@ export class ScriptComponent implements OnInit {
   };
 
   onSave(event) {
-   new ParseEngine().reProcess();
+  new ParseEngine().reProcess();
   }
   onFileChange(event) {
     if (event.target.files.length > 0) {

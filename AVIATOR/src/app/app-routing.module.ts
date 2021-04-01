@@ -43,10 +43,11 @@ const routes: Routes = [
     },
     {
     path: 'script',
-    component: ScriptComponent
-  }, {
-        path: 'scene',
-  component: SceneComponent
+    component: ScriptComponent,
+    },
+    {
+    path: 'scene',
+    component: SceneComponent,
     }
 ];
 

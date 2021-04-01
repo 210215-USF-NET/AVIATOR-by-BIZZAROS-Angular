@@ -29,21 +29,40 @@ export class AddPilotComponent implements OnInit {
     this.newpilot =
     {
       id: 0,
-      pilotName: '',
-      Producer: 
+      producer:
       {
         userName: '',
-        id: 0,
         firstName: '',
         lastName: '',
         email: '',
         phoneNumb: 0,
+        id: 0,
         pilots: []
       },
       producerID: 0,
-      pilotDescription: ''
+      pilotName: '',
+      pilotDescription: '',
+      script:
+      {
+        id : 0,
+        scriptwriter: 
+        {
+          userName: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          phoneNumb: 0,
+          id: 0,
+          pilots: []
+        },
+        scriptwriterID: 0,
+        pilotID: 0,
+        scriptURL :''
+      },
+      scenes: [],
+      files: []
     }
-  }
+    }
 
 
   ngOnInit(): void {this.auth.user$.subscribe (
