@@ -1,13 +1,14 @@
 .Elements {
-width:100%;
-margin: 15px;
-padding: 10px;
-border-width: 2px;
-float: right;
-/* display: inline-block; */
-overflow: hidden;
-clear:both;
-align-content:center;
+
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  border-width: 2px;
+  float: right;
+  display: inline-block;
+  overflow: hidden;
+  clear: both;
+  align-content: center;
 }
 .BackgroundBlock {
 margin: 15px;
@@ -17,35 +18,47 @@ border-style: solid;
 display: block;
 display: inline-block;
 }
-.CharList:hover{
-background-color:lightblue;
+.CharacterList{
+    display:inline;
 }
-.DialougeList:hover{
-background-color:lightblue;
+.DialogueList{
+    display:inline;
+}
+.BackgroundList{
+    display:inline;
+}
+.CharacterList:hover {
+  background-color: lightblue;
+}
+.DialogueList:hover{
+    background-color:lightblue;
+}
+.menuItem:hover {
+  background-image: radial-gradient(circle,black,#003366,black);
+  color: white;
 }
 
-
-.Background:hover {
-background-color: lightblue;
+.BackgroundList:hover {
+  background-color: lightblue;
 }
 .Content {
   display: none;
 }
 
 .CharacterBlock {
-margin: 15px;
-padding: 10px;
-border-width: 2px;
-border-style: solid;
-display: block
+  margin: 15px;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  display: inline-block
 }
 
 .DialogueBlock {
-margin: 15px;
-padding: 10px;
-border-width: 2px;
-border-style: solid;
-display: block;
+  margin: 15px;
+  padding: 10px;
+  border-width: 2px;
+  border-style: solid;
+  display: inline-block;
 }
 
 .navScene {
@@ -54,10 +67,11 @@ background-color: aliceblue;
 }
 
 .sceneNav {
-color: orangered;
-display: inline;
-margin: 5px;
-user-select: none;
+  color: black;
+  display: inline;
+  font-weight:bold;
+  margin: 5px;
+  user-select: none;
 }
 body {
 
@@ -66,17 +80,32 @@ background-color:green;
 .CharList{
 position:relative;
 }
-
+.videoAsset{
+    display:none;
+}
 .context {
-position:absolute;
-left:0px;
-top:0px;
-display:none;
-border:solid;
-background-color:white;
-z-index:200;
-padding:5px;
-backdrop-filter:blur();
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: none;
+  border: solid;
+  background-color: white;
+  z-index: 200;
+  padding: 5px;
+  backdrop-filter: blur();
+  cursor: pointer;
+}
+.contextClaimed {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: none;
+  border: solid;
+  background-color: white;
+  z-index: 200;
+  padding: 5px;
+  backdrop-filter: blur();
+  cursor: pointer;
 }
 .AssetName {
 position: absolute;
@@ -94,10 +123,11 @@ left: 0px;
 float:left;
 }
 .AssetDescription {
-position: relative;
-/* display:inline-block; */
-top:0px;
-float: right;
+  position: relative;
+  display:inline-block;
+  top:0px;
+  margin:20px;
+  float:none;
 }
 .DisplayBackground {
 position: absolute;
@@ -118,10 +148,34 @@ height:auto;
   vertical-align: middle;
 }
 .Upload {
+    display:inline;
     margin-left:5px;
   font-size: 10px;
   font-family: 'Blackout 2 AM';
   background-color: black;
   color: white;
   vertical-align: middle;
+}
+.Save{
+    display:inline;
+
+}
+.buttons{
+    width:100%;
+
+}
+
+.SceneLabel{
+    width:30%;
+    margin:0 auto;
+}
+.SceneContent{
+    width:100%;
+    margin:0 auto;
+}
+.DisplayItem {
+    width:75%;
+    margin:0 auto;
+    padding:20px;
+    
 }
