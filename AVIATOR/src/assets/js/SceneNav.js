@@ -103,8 +103,10 @@ this.context = ".context";
     scratch.querySelectorAll(".Upload").forEach(e => e.outerHTML = "");
     Scene2Replace.innerHTML = scratch.innerHTML;
     scratch.innerHTML = "";
+    console.log(self.data);
     CacheEngine.setCache("Processed", self.data.innerHTML);
-
+    let converted = new ParseEngine().Convert(self.data.innerHTML);
+    CacheEngine.setCache("Converted", converted);
   }
 
   this.ContextFunction = function (x, action) {
@@ -186,25 +188,32 @@ this.context = ".context";
 
   this.UpdateScript = function () {
     self.Save();
-    let converted = new ParseEngine().Convert(self.data.innerHTML);
-    CacheEngine.setCache("Converted", converted);
+
   }
 
   this.ShowFile = function (res) {
     let im = document.querySelector(".VideoAsset");
     im.style.display = "none";
-    if (!res) {
-      res = "https://i.ibb.co/LhkWVY0/0-CA3-D92-E-136-D-438-E-9-F6-F-CD9-FBFF6-DD41.jpg";
-    }
-    else {
-      self.target.parentElement.firstChild.dataset.asset = res;
-      self.Save();
-    }
+ 
     let item = document.querySelector(".DisplayItem");
     item.style.display = "block";
     if (self.target.parentElement.firstChild.dataset.uid.indexOf("d") > -1) {
-      res = "https://madsvids.blob.core.windows.net/whas/033%20but%20im%20not%20out%20of%20tricks.wav";
-
+      if (!res) {
+        res = "https://madsvids.blob.core.windows.net/whas/033%20but%20im%20not%20out%20of%20tricks.wav";
+      }
+      else {
+        self.target.parentElement.firstChild.dataset.asset = res;
+        self.Save();
+      }
+    }
+    else {
+      if (!res) {
+        res = "https://i.ibb.co/LhkWVY0/0-CA3-D92-E-136-D-438-E-9-F6-F-CD9-FBFF6-DD41.jpg";
+      }
+      else {
+        self.target.parentElement.firstChild.dataset.asset = res;
+        self.Save();
+      }
     }
     let selecter = ".AssetImg";
     let displayImage = document.querySelector(selecter);
