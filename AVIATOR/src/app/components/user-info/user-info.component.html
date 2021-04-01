@@ -1,14 +1,19 @@
-<div class="container transparent">
+<div class="container">
     <table class="table">
         <thead>
-            <th>E-mail</th>
+            <th>User Name</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>E-Mail</th>
+            <th>Phone Number</th>
         </thead>
         <tbody>
-            <td>dude@gmail.com</td>
-            <td>Dude</td>
-            <td>McGuy</td>
+            <td>{{userModel.userName}}</td>
+            <td>{{userModel.firstName}}</td>
+            <td>{{userModel.lastName}}</td>
+            <td>{{userModel.email}}</td>
+            <td>{{userModel.phoneNumb}}<td>
         </tbody>
     </table>
+    <a class="nav-link-active" routerLink="edit-user">Update information</a>
 </div>

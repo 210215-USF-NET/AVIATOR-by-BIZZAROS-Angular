@@ -1,4 +1,5 @@
 .Elements {
+
   width: 100%;
   margin: 0 auto;
   padding: 10px;
@@ -10,12 +11,12 @@
   align-content: center;
 }
 .BackgroundBlock {
-  margin: 15px;
-  padding: 10px;
-  border-width: 2px;
-  border-style: solid;
-  display: block;
-  display: inline-block;
+margin: 15px;
+padding: 10px;
+border-width: 2px;
+border-style: solid;
+display: block;
+display: inline-block;
 }
 .CharacterList{
     display:inline;
@@ -61,8 +62,8 @@
 }
 
 .navScene {
-  width: 100%;
-  background-color: aliceblue;
+width: 100%;
+background-color: aliceblue;
 }
 
 .sceneNav {
@@ -77,7 +78,7 @@ body {
 background-color:green;
 }
 .CharList{
-    position:relative;
+position:relative;
 }
 .videoAsset{
     display:none;
@@ -107,19 +108,19 @@ background-color:green;
   cursor: pointer;
 }
 .AssetName {
-  position: absolute;
-  font-size: 18px;
-  left: 0px;
-  top: 0px;
-  text-shadow: 2px 2px 4px #000000;
-  color: white;
+position: absolute;
+font-size: 18px;
+left: 0px;
+top: 0px;
+text-shadow: 2px 2px 4px #000000;
+color: white;
 }
 .AssetImg {
-  display: inline-block;
-  position:relative;
-  top: 0px;
-  left: 0px;
-  float:left;
+/* display: inline-block; */
+position:relative;
+top: 0px;
+left: 0px;
+float:left;
 }
 .AssetDescription {
   position: relative;
@@ -129,10 +130,10 @@ background-color:green;
   float:none;
 }
 .DisplayBackground {
-  position: absolute;
-  top:0px;
-  left:0px;
-  height:auto;
+position: absolute;
+top:0px;
+left:0px;
+height:auto;
 }
 .label {
   font-size: 30px;

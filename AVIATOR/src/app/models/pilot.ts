@@ -1,7 +1,9 @@
 import { user } from "./user";
 export interface pilot 
 {
-    producer: user
+    id: number,
+    Producer: user
     producerID: number
-    name: string
+    pilotName: string
+    pilotDescription: string
 }
