@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
 import { ScriptSaveService } from '../../services/script-save.service';
 import { ScriptGetService } from '../../services/script-get.service';
+import { UserRESTService } from 'src/app/services/user-rest.service';
 
 declare var ParseEngine: any;
 declare var CacheEngine: any;
@@ -20,7 +21,7 @@ declare var form: FormGroup;
 export class ScriptComponent implements OnInit {
 
 
-  constructor(private formBuilder: FormBuilder, private ssave: ScriptSaveService, private sget: ScriptGetService, public auth: AuthService) {
+  constructor(private formBuilder: FormBuilder, private ssave: ScriptSaveService, private sget: ScriptGetService, public auth: AuthService, private userService: UserRESTService) {
  
   }
   form : FormGroup;
@@ -29,7 +30,14 @@ export class ScriptComponent implements OnInit {
   fr: any;
   resultFile: any;
   ngOnInit() {
-    this.auth.user$.subscribe(user => CacheEngine.user = user.id);
+    this.auth.user$.subscribe(user =>
+      this.userService.GetUserByEmail(user.email).subscribe
+        (
+          foundUser => {
+            CacheEngine.user = foundUser.id;
+          }
+        )
+    );
     let resultFile = "";
    this.form = this.formBuilder.group({
      screenplay: ['']
