@@ -229,9 +229,9 @@ var ParseEngine = function () {
   this.Convert = function (parsed) {
     
       let ScriptPayload = {
-        "pilotID": 3,
+        "pilotID": CacheEngine.pilot,
         "scriptBody": parsed,
-        "userID": 1,
+        "userID": CacheEngine.user,
         "scenes": []
       };
       let count = 0;

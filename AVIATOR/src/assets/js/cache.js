@@ -1,4 +1,6 @@
 CacheEngine = new (function () {
+  this.pilot = 3;
+  this.user = 1;
   this.cache = new Array();
   this.callback = function () {
     console.log()

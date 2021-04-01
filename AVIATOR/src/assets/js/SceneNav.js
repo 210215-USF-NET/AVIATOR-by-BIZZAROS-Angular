@@ -3,8 +3,6 @@
 SceneNav = new (function () {
   let self = this;
   this.Length = 0;
-  this.user = "";
-  this.userId = 1;
   this.Current = 0;
   this.MaxShow = 10;
   this.Scenes = new Array();
@@ -60,12 +58,13 @@ this.context = ".context";
 
 
   this.AddListeners = function (fill, uid, menuText) {
-    let attachee = document.querySelector('[data-action="show"]');
-    attachee.addEventListener("click", function () { self.ShowAsset(); });
+    let attachee = document.querySelectorAll('[data-action="show"]').forEach(x => {
+      x.addEventListener("click", function () { self.ShowAsset(); });
+  });
     attachee = document.querySelector('[data-action="claim"]');
     attachee.addEventListener("click", function () { self.ClaimAsset(); });
     attachee = document.querySelector('.AssetDescription');
-    attachee.addEventListener("input", function () { self.target.dataset.desc = this.innerText; self.Save(); });
+    attachee.addEventListener("input", function () { self.target.dataset.desc = this.innerText; });
     attachee = document.querySelectorAll('.Add').forEach(x => {
       x.addEventListener("click", function (e) { self.AddAssetToScene(e.target.value); });
     });
@@ -97,9 +96,15 @@ this.context = ".context";
 
   this.Save = function () {
     let Scene2Replace = self.data.querySelector('[data-uid="' + self.Scenes[self.Current].dataset.uid + '"] .Elements');
-    let Scene2Rwith = document.querySelector('.Elements');
-    Scene2Replace.innerHTML = Scene2Rwith.innerHTML;
+    let Scene2Rwith = document.querySelector('.Elements').innerHTML;
+    let scratch=document.querySelector(".scratch");
+   scratch.innerHTML = Scene2Rwith;
+   
+    scratch.querySelectorAll(".Upload").forEach(e => e.outerHTML = "");
+    Scene2Replace.innerHTML = scratch.innerHTML;
+    scratch.innerHTML = "";
     CacheEngine.setCache("Processed", self.data.innerHTML);
+
   }
 
   this.ContextFunction = function (x, action) {
@@ -113,7 +118,7 @@ this.context = ".context";
       select.style.top = (e.pageY - (50)) + "px";
       self.target = x;
       let listener = function (e) {
-        if (e.target.className != "menuItem") { e.target.style.display = "none"; select.removeEventListener("mouseout", listener); };
+        if (e.target.className != "menuItem") { document.querySelector(self.context).style.display = "none"; select.removeEventListener("mouseout", listener); };
       }
       select.addEventListener("mouseout", listener);
     });
@@ -150,7 +155,7 @@ this.context = ".context";
   }
   this.ClaimAsset = function () {
     document.querySelector(self.context).style.display = "none";
-    self.target.parentElement.firstChild.dataset.claimId = 2; //self.userId;
+    self.target.parentElement.firstChild.dataset.claimId = CacheEngine.user; //self.userId;
     self.target.parentElement.firstChild.dataset.claim = true;
     self.ClaimCheck(self.target.parentElement.firstChild);
  
@@ -159,7 +164,7 @@ this.context = ".context";
   this.ClaimCheck = function (element) {
     if (element.dataset.claim ) {
       element.style.backgroundColor = "orange";
-      if (element.dataset.claimId != self.userId) {
+      if (element.dataset.claimId != CacheEngine.user) {
         return true;
       }
       
@@ -179,9 +184,15 @@ this.context = ".context";
     return bt;
   }
 
-
+  this.UpdateScript = function () {
+    self.Save();
+    let converted = new ParseEngine().Convert(self.data.innerHTML);
+    CacheEngine.setCache("Converted", converted);
+  }
 
   this.ShowFile = function (res) {
+    let im = document.querySelector(".VideoAsset");
+    im.style.display = "none";
     if (!res) {
       res = "https://i.ibb.co/LhkWVY0/0-CA3-D92-E-136-D-438-E-9-F6-F-CD9-FBFF6-DD41.jpg";
     }
@@ -190,31 +201,40 @@ this.context = ".context";
       self.Save();
     }
     let item = document.querySelector(".DisplayItem");
-    item.style.display= "block";
+    item.style.display = "block";
     if (self.target.parentElement.firstChild.dataset.uid.indexOf("d") > -1) {
       res = "https://madsvids.blob.core.windows.net/whas/033%20but%20im%20not%20out%20of%20tricks.wav";
 
     }
+    let selecter = ".AssetImg";
+    let displayImage = document.querySelector(selecter);
+    displayImage.style.display = "block";
     let desc = "enter your description here";
     if (self.target.parentElement.firstChild.dataset.desc) { desc = self.target.parentElement.firstChild.dataset.desc; }
-    let selecter = ".AssetImg";
+
     if (self.target.parentElement.firstChild.dataset.uid.indexOf("d") > -1) {
-      let im = displayImage.querySelector(".VideoAsset");
-      im.src = res;
-      al.al = im.addEventListener("load", setTimeout(im.play(), 1000));
-      return;
+
+      im.firstChild.src = res;
+      self.LoadListener = function () { setTimeout(im.firstChild.play(), 1000); im.removeEventListener("load", self.LoadListener); }
+      im.firstChild.addEventListener("load", self.LoadListener);
+      im.style.display = "block";
+      displayImage.style.display = "none";
+      item.style.height = "250px";
+      desc = ".";
 
     }
-    let displayImage = document.querySelector(selecter);
+    else {
     if (self.target.parentElement.firstChild.dataset.uid.indexOf("b") > -1) {
       selecter = ".DisplayBackground";
 
     }
     displayImage.innerHTML = '<img src="' + res + '" alt="your image" width="50%" height="50%"/>';
-    let im = displayImage.querySelector("img");
+    im = displayImage.querySelector("img");
     im.addEventListener("load", function () { item.style.height = window.getComputedStyle(this, null).getPropertyValue("height"); })
+
+  }
     let displayName = document.querySelector(".AssetName");
-    displayName.innerText = self.target.parentElement.firstChild.innerText.replace("^", "");
+    displayName.innerText = self.target.parentElement.firstChild.innerText;
     let displayDesc = document.querySelector(".AssetDescription");
     displayDesc.innerText = desc;
 

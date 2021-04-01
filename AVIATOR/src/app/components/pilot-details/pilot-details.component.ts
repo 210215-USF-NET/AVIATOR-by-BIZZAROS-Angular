@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { pilot } from 'src/app/models/pilot';
 import { PilotRESTService } from 'src/app/services/pilot-rest.service';
-
+declare var CacheEngine: any;
 @Component({
   selector: 'app-pilot-details',
   templateUrl: './pilot-details.component.html',
@@ -34,7 +34,7 @@ export class PilotDetailsComponent implements OnInit {
   this.route.queryParams.subscribe(
     params =>{
       this.pilotService.GetPilot(params.pilot).subscribe(
-      foundPilot => {this.pilot = foundPilot;}
+        foundPilot => { this.pilot = foundPilot; CacheEngine.pilot=this.pilot.id;}
     )}
   )
   }
