@@ -40,13 +40,17 @@ var ParseEngine = function () {
       if (!e.dataset.uid) {
         e.dataset.uid = "b" + (count++);
       }
-      e.className = "Background";
+      let holder = document.createElement("div");
+      holder.className = "BackgroundHolder";
+      holder.dataset.uid = e.dataset.uid;
+      e.className = "BackgroundList";
       e.innerText = x.innerText;
+      holder.appendChild(e);
       var sel = x.parentElement.parentElement.querySelector(".Elements");
       if (sel != null) {
         var fill = sel.querySelector('.BackgroundBlock');
         if (fill != null) {
-          fill.appendChild(e);
+          fill.appendChild(holder);
         }
       }
     });
@@ -81,7 +85,11 @@ var ParseEngine = function () {
       if (sel != null) {
         var fill = sel.querySelector('.DialogueBlock');
         if (fill != null) {
-          fill.appendChild(e);
+          let holder = document.createElement("div");
+          holder.className = "DialogueHolder";
+          holder.dataset.uid = e.dataset.uid;
+          holder.appendChild(e);
+          fill.appendChild(holder);
         }
       }
     });
@@ -99,8 +107,11 @@ var ParseEngine = function () {
       e.dataset.scene = sid;
       e.className = "CharacterList";
       e.innerText = char;
-
-      fill.appendChild(e);
+      let holder = document.createElement("div");
+      holder.className = "CharacterHolder";
+      holder.dataset.uid = e.dataset.uid;
+      holder.appendChild(e);
+      fill.appendChild(holder);
     }
   }
 
@@ -121,6 +132,7 @@ var ParseEngine = function () {
   }
   this.process = function (xmlDoc, purge) {
     let scmod = document.getElementById("sceneMaker");
+    scmod.innerHTML = "";
     if (CacheEngine.getCache("Processed") && !purge) {
       scmod.innerHTML = CacheEngine.getCache("Processed");
       scmod.querySelectorAll(".Content").forEach(x => x.style.display = "block");

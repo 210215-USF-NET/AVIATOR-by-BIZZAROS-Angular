@@ -45,13 +45,13 @@ a {
       border-width:2px;
       border-style:none;
      display:inline-block;
-      
-  
   }
-  
-  .Elements {
-  display:none;
-  }
+
+
+
+.Elements {
+  display: none;
+}
   
   .BackgroundBlock {
     margin: 15px;
@@ -92,4 +92,47 @@ a {
   .show {
     display: inherit;
   }
-  
+h1 {
+    color:white;
+}
+  body{
+      margin:5px;
+      background-image:radial-gradient(circle,black,#003366,black);
+      color:white;
+     
+  }
+input {
+  display: inline;
+  background-image: radial-gradient(#f6f6f6,white,#b7b7f6);
+}
+form {
+display:inline;
+margin:15px;
+}
+.Pilot {
+  color: black;
+  margin: 0 auto;
+  overflow-y: scroll;
+  background-color: #ffffff;
+  height: 75vh;
+  width: 65%;
+  background-image: radial-gradient(#f6f6f6,white,#b7b7f6);
+}
+.scriptholder{
+    width:100%;
+   
+}
+.sceneMaker {
+  margin: 0 auto;
+}
+.context {
+  color: black;
+  background-image: radial-gradient(#f6f6f6,white,#b7b7f6);
+}
+.navScene {
+  background-image: radial-gradient(#f6f6f6,white,#b7b7f6);
+}
+
+.fileLabel {
+  background-image: radial-gradient(#f6f6f6,white,#b7b7f6);
+}
