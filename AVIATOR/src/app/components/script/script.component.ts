@@ -50,7 +50,7 @@ export class ScriptComponent implements OnInit {
     );
   }
   onGet(event) {
-    this.sget.getScript(CacheEngine.pilot).subscribe(x => this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)))
+    this.sget.getScript(CacheEngine.pilot).subscribe(x => { CacheEngine.purge("all"); this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)) })
   };
 
   onSave(event) {

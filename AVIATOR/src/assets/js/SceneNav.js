@@ -103,7 +103,7 @@ this.context = ".context";
     scratch.querySelectorAll(".Upload").forEach(e => e.outerHTML = "");
     Scene2Replace.innerHTML = scratch.innerHTML;
     scratch.innerHTML = "";
-    console.log(self.data);
+    //console.log(self.data);
     CacheEngine.setCache("Processed", self.data.innerHTML);
     let converted = new ParseEngine().Convert(self.data.innerHTML);
     CacheEngine.setCache("Converted", converted);
@@ -130,7 +130,7 @@ this.context = ".context";
 
     let list = sc.querySelectorAll('.CharacterList').forEach(x => {
       self.ContextFunction(x, "contextmenu");
-      self.ClaimCheck(x);
+      self.PerformChecks(x);
     });
      list = sc.querySelectorAll('.CharacterHolder').forEach(x => {    
        x.append(self.CreateButton(x.dataset.uid));
@@ -139,7 +139,8 @@ this.context = ".context";
     
     list = sc.querySelectorAll('.BackgroundList').forEach(x => {
       self.ContextFunction(x, "contextmenu");
-      self.ClaimCheck(x);
+      self.PerformChecks(x);
+     
     });
     list = sc.querySelectorAll('.BackgroundHolder').forEach(x => {
       x.append(self.CreateButton(x.dataset.uid));
@@ -147,7 +148,7 @@ this.context = ".context";
     });
     list = sc.querySelectorAll('.DialogueList').forEach(x => {
       self.ContextFunction(x, "contextmenu");
-      self.ClaimCheck(x);
+      self.PerformChecks(x);
     });
     list = sc.querySelectorAll('.DialogueHolder').forEach(x => {
       x.append(self.CreateButton(x.dataset.uid));
@@ -162,6 +163,21 @@ this.context = ".context";
     self.ClaimCheck(self.target.parentElement.firstChild);
  
   }
+  this.PerformChecks=function(x){
+    self.ClaimCheck(x);
+    self.AssetCheck(x);
+  }
+  this.AssetCheck = function (element) {
+    if (element.dataset.asset) {
+      element.style.backgroundColor = "lime";
+      if (element.dataset.claimId != CacheEngine.user) {
+        return true;
+      }
+
+    }
+    return false;
+  }
+
 
   this.ClaimCheck = function (element) {
     if (element.dataset.claim ) {
