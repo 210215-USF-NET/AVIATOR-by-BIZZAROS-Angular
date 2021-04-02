@@ -16,7 +16,7 @@ this.context = ".context";
     if (data == "") { return; }
     self.fill = fill;
     let hack = document.createElement("div");
-    if (!self.cached) {
+    if (!self.cached ||(self.data!=data)) {
       hack.innerHTML = data;
       self.data = hack;
       self.cached = true;

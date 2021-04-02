@@ -24,8 +24,11 @@ export class SceneComponent implements OnInit {
   
   ngOnInit() {
     if (CacheEngine.getCache("Processed")) {
+      SceneNav.Current = 0;
       SceneNav.Populate(document.querySelector(".navScene"), CacheEngine.getCache("Processed"));
     }
+
+
     this.form = this.formBuilder.group({
       character: ['']
     });
