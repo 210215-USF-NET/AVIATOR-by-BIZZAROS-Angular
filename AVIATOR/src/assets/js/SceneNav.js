@@ -22,8 +22,10 @@ this.context = ".context";
       self.cached = true;
     }
 
+
+    self.data.querySelectorAll(".Elements").forEach(x => x.style.display = "inline-block");
+    self.data.querySelectorAll(".Content").forEach(x => x.style.display = "none");
     hack = self.data;
-    console.log(hack.innerHTML);
     var start = self.Current;
     self.Scenes = hack.querySelectorAll(".Section");
     if (self.Scenes.length < 1) {
