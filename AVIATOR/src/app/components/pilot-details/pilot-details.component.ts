@@ -34,7 +34,7 @@ export class PilotDetailsComponent implements OnInit {
   this.route.queryParams.subscribe(
     params =>{
       this.pilotService.GetPilot(params.pilot).subscribe(
-        foundPilot => { this.pilot = foundPilot; CacheEngine.pilot=this.pilot.id;}
+        foundPilot => { this.pilot = foundPilot; CacheEngine.purge("all"); CacheEngine.pilot = this.pilot.id;}
     )}
   )
   }

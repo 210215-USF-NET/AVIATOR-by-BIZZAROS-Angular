@@ -43,14 +43,17 @@ export class ScriptComponent implements OnInit {
      screenplay: ['']
     });
     if (CacheEngine.getCache("Processed")) {
-      new ParseEngine().process("",false);
+      new ParseEngine().process("", false);
+    }
+    else {
+      this.sget.getScript(CacheEngine.pilot).subscribe(x => { CacheEngine.purge("all"); this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)) })
     }
     CacheEngine.onProcessedChange((res) =>
       this.ssave.SaveScript(res).subscribe(x => console.log(x))
     );
   }
   onGet(event) {
-    this.sget.getScript(CacheEngine.pilot).subscribe(x => this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)))
+    this.sget.getScript(CacheEngine.pilot).subscribe(x => { CacheEngine.purge("all"); this.sget.getContent(x.script.scriptURL).subscribe(y => new ParseEngine().ProcessSaved(y)) })
   };
 
   onSave(event) {

@@ -6,6 +6,7 @@ import { user } from 'src/app/models/user';
 import { PilotRESTService } from 'src/app/services/pilot-rest.service';
 import { UserRESTService } from 'src/app/services/user-rest.service';
 import { parseIsolatedEntityName, textChangeRangeIsUnchanged } from 'typescript';
+declare var CacheEngine: any;
 
 @Component({
   selector: 'app-add-pilot',
@@ -61,7 +62,8 @@ export class AddPilotComponent implements OnInit {
   onSubmit(): void{
     this.newpilot.producerID = this.producer.id;
     this.pilotService.AddPilot(this.newpilot).subscribe( 
-      (pilot)=> { alert('New pilot was added.');
+      (pilot) => {
+        CacheEngine.purge("all"); CacheEngine.pilot = pilot.id;alert('New pilot was added.');
       this.router.navigate(['']);}
     );
   }
